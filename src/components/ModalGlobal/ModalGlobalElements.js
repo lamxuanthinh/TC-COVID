@@ -63,7 +63,9 @@ export const ModalClose = styled.div`
   i {
     padding: 10px 15px;
     font-size: 2rem;
+    transition: all .3s ease-in-out;
     &:hover {
+      transition: all .3s ease-in-out;
       opacity: 0.8;
     }
   }

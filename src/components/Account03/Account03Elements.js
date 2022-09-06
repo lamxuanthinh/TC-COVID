@@ -6,6 +6,12 @@ import { BiChat, BiUserCircle, BiIdCard } from "react-icons/bi";
 import { FiSmartphone } from "react-icons/fi";
 import { FaTransgender } from "react-icons/fa";
 
+export const ContainerAccount03 = styled.div`
+  @media print {
+    display: none;
+  }
+`;
+
 export const WrapperAll = styled.div`
   background-color: #19bc9c;
   height: 100vh;
@@ -41,38 +47,11 @@ export const Account02Container = styled.div`
   }
 `;
 
-// start header
-export const Header = styled.div`
-  height: 54px;
-  display: flex;
-  padding: 0 15px;
-  background-color: #19bc9c;
-`;
-
-export const LogoWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-  }
-
-  h4 {
-    text-align: center;
-    padding-left: 10px;
-    color: #fff;
-  }
-`;
-// end header
-
 export const ListInformations = styled.div`
+  width: 95%;
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
-  width: 95%;
 
   @media screen and (max-width: 991.98px) {
     flex-flow: column;
@@ -115,6 +94,7 @@ export const DataInformations = styled.div`
   margin-right: 5px;
 `;
 
+// start content data in table
 export const Table = styled.div`
   table {
     width: 95%;
@@ -137,42 +117,13 @@ export const Table = styled.div`
     padding: 6px;
     border: 1px solid #ccc;
     text-align: left;
-  }
-
-  th:nth-of-type(2) {
-    width: 380px;
-  }
-
-  th:nth-of-type(3) {
-    width: 90px;
     text-align: center;
   }
 
-  th:nth-of-type(4) {
-    width: 90px;
-    text-align: center;
-  }
-  th:nth-of-type(5) {
-    width: 90px;
-    text-align: center;
-  }
-
-  .centerRadio {
-    text-align: center;
-  }
-
-  .centerRadio:checked {
-    border: 5px solid #0dff92;
-  }
-
-  .inputData {
-    padding-left: 25px;
-    min-width: 100%;
-    font-size: 1rem;
-    border: 0;
-    outline: 0;
-    white-space: normal;
-    background: transparent;
+  .centerText {
+    td {
+      text-align: center;
+    }
   }
 
   // convert table responsive in mobile and tablet
@@ -184,6 +135,12 @@ export const Table = styled.div`
     td,
     tr {
       display: block;
+    }
+
+    .centerText {
+      td {
+        text-align: left;
+      }
     }
 
     .centerRadio {
@@ -217,31 +174,102 @@ export const Table = styled.div`
     }
 
     td:nth-of-type(1):before {
-      content: "Tiền sử";
+      content: "Mũi Tiêm";
+      text-align: left;
       font-weight: 500;
     }
 
     td:nth-of-type(2):before {
-      content: "Triệu chứng";
+      content: "Ngày Tiêm";
+      text-align: left;
       font-weight: 500;
     }
 
     td:nth-of-type(3):before {
-      content: "có";
+      content: "Loại Vắc Xin";
+      text-align: left;
       font-weight: 500;
     }
 
     td:nth-of-type(4):before {
-      content: "Không";
-      font-weight: 500;
-    }
-
-    td:nth-of-type(5):before {
-      content: "Không rõ";
+      content: "Loại Vắc Xin";
+      text-align: left;
       font-weight: 500;
     }
   }
 `;
+// end content data in table
+
+// start input day and type vaccine
+// i will fix bug responsive in devices ipa pro
+export const InputDayAndTypeVaccine = styled.div`
+  width: 95%;
+  margin: 30px auto 0px auto;
+  display: flex;
+  justify-content: space-between;
+
+  .inputAdddress {
+    width: 60%;
+  }
+  .inputTypeVaccine {
+    width: 40%;
+  }
+
+  label {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  input {
+    width: 82%;
+    outline: none;
+    padding: 7px;
+    font-size: 1rem;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    &:focus {
+      box-shadow: 0.5px 0.5px 10px 2px #19bc9c;
+    }
+  }
+
+  select {
+    outline: none;
+    width: 70%;
+    padding: 7px;
+    font-size: 1rem;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    &:focus {
+      box-shadow: 0.5px 0.5px 10px 2px #19bc9c;
+    }
+  }
+
+  @media only screen and (max-width: 991.98px) {
+    display: block;
+
+    .inputAdddress {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .inputTypeVaccine {
+      width: 100%;
+      margin: 30px 0;
+    }
+
+    label {
+      padding-top: 20px;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    select {
+      width: 100%;
+    }
+  }
+`;
+// end input day and type vaccine
 
 export const MenuHandle = styled.div`
   margin: 30px 0;
@@ -391,5 +419,112 @@ export const IconChat = styled(BiChat)`
   &:hover {
     transition: all 0.3s ease-in-out;
     opacity: 0.7;
+  }
+`;
+
+export const ContainerDocumentPrint = styled.div`
+  display: none;
+  .phieu {
+    margin: 0 auto;
+    width: 595px;
+    height: 420px;
+    background-color: white;
+  }
+
+  /// document print
+  .khung {
+    position: relative;
+    top: 10px;
+    width: 554px;
+    margin-left: 20px;
+  }
+  .QRconghoaxahoi {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .QR {
+    position: relative;
+    top: 5px;
+    left: 10px;
+    width: 80px;
+    height: 80px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    line-height: 80px;
+  }
+  .conghoaxahoi {
+    margin-left: 60px;
+    font-size: 15px;
+    text-align: center;
+  }
+  .giayxac {
+    font-size: 16px;
+  }
+  .gachchan {
+    width: 40%;
+    background-color: black;
+    align-items: center;
+  }
+  .thongtin {
+    width: 100%;
+  }
+  .bangdongdau {
+    border: 1px solid black;
+    width: 100%;
+  }
+  .lieucoban {
+    text-align: center;
+  }
+  .kyten {
+    text-align: center;
+  }
+
+  .chucnang {
+    position: fixed;
+    top: 9px;
+    right: 18%;
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    color: black;
+  }
+
+  .chucnang ion-icon {
+    position: absolute;
+    color: #19bc9c;
+    font-size: 45px;
+    align-items: center;
+    margin-left: 2.5px;
+    margin-top: 3.5px;
+  }
+  .hoanthanh {
+    position: fixed;
+    top: 70px;
+    right: 18%;
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    color: black;
+  }
+  .hoanthanh ion-icon {
+    position: absolute;
+    color: #19bc9c;
+    font-size: 45px;
+    align-items: center;
+    margin-left: 2.5px;
+    margin-top: 3.5px;
+  }
+  @media print {
+    display: block;
   }
 `;

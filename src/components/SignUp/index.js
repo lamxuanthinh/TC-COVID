@@ -278,7 +278,7 @@ const SignUp = () => {
   };
 
   // useEffect(()=> {
-     
+
   // },[])
 
   // form completed and call api
@@ -298,7 +298,7 @@ const SignUp = () => {
     <>
       {loading ? <Loader /> : null}
       <Modal setShowModal={setShowModal} showModal={showModal} />
-      <SignUpContainer loading={loading} showModal={showModal} >
+      <SignUpContainer loading={loading} showModal={showModal}>
         <WrapperHidden>
           <SignUpWrapper>
             <SignUpTitle>Đăng Kí</SignUpTitle>

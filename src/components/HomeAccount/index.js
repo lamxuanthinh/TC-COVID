@@ -1,4 +1,7 @@
 import React from "react";
+import ModalGlobal from "../ModalGlobal";
+import { useState } from "react";
+
 import {
   HomeAccountContainer,
   NavbarWrapper,
@@ -10,14 +13,47 @@ import {
   SettingIcon,
   RoomWrapper,
   RomBtn,
+  ModalContentProfile,
+  BtnLogoutAccount,
   IconInput,
   IconBtn,
   InputWrapper,
 } from "./HomeAccountElements";
 
 const HomeAccount = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleProfile = () => {
+    setShowModal(true);
+  };
+
+  const CloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
+      <ModalGlobal showModal={showModal} CloseModal={() => CloseModal()}>
+        <ModalContentProfile>
+          <h1>Thông Tin Cá Nhân</h1>
+
+          <div className="information">
+            <div className="imgWrapper">
+              <i className="fa-regular fa-pen-to-square iconEditor"></i>
+              <img src={require("../../images/images.jpeg")} />
+            </div>
+            <div className="Content">
+              <p>Tên : Lâm Xuân Thịnh</p>
+              <p>Ngày Sinh : 29/08/2003</p>
+              <p>Vai Trò : Bác Sĩ Tiêm Chủng</p>
+            </div>
+          </div>
+          <BtnLogoutAccount>
+            <i className="fa-regular fa-right-from-bracket"></i>
+            Đăng Xuất
+          </BtnLogoutAccount>
+        </ModalContentProfile>
+      </ModalGlobal>
       <HomeAccountContainer>
         <NavbarWrapper>
           <LogoWrapper>
@@ -26,7 +62,10 @@ const HomeAccount = () => {
           </LogoWrapper>
           <FunctionWrapper>
             <SettingIcon />
-            <img src={require("../../images/images.jpeg")} />
+            <img
+              src={require("../../images/images.jpeg")}
+              onClick={handleProfile}
+            />
           </FunctionWrapper>
         </NavbarWrapper>
 
@@ -43,11 +82,12 @@ const HomeAccount = () => {
             </p>
             <RoomWrapper>
               <RomBtn>
-                <IconBtn />
+                <i class="fa-regular fa-circle-plus"></i>
+                {/* <IconBtn /> */}
                 Tạo Phòng
               </RomBtn>
               <InputWrapper>
-                <IconInput />
+                {/* <IconInput /> */}
                 <input placeholder="Nhập vào id phòng" />
               </InputWrapper>
             </RoomWrapper>

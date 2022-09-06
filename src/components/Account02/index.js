@@ -4,6 +4,8 @@ import ModalGlobal from "../ModalGlobal";
 import ModalComplete from "./ModalComplete";
 import ModalDelete from "./ModalDelete";
 import ModalLeave from "./ModalLeave";
+import ModalListUser from "./ ModalListUser";
+import ModalInformation from "./ModalInformation";
 
 import {
   WrapperAll,
@@ -47,8 +49,12 @@ const Account02 = () => {
     tagDataModal = <ModalComplete dataRadio={dataRadio.length}></ModalComplete>;
   } else if (buttonHandle === "delete") {
     tagDataModal = <ModalDelete></ModalDelete>;
-  } else {
+  } else if (buttonHandle === "leave") {
     tagDataModal = <ModalLeave></ModalLeave>;
+  } else if (buttonHandle === "listUser") {
+    tagDataModal = <ModalListUser></ModalListUser>;
+  } else {
+    tagDataModal = <ModalInformation></ModalInformation>;
   }
 
   const handleDone = () => {
@@ -66,14 +72,24 @@ const Account02 = () => {
     setShowModal(true);
   };
 
+  const handleInformation = () => {
+    setButtonHandle("Information");
+    setShowModal(true);
+  };
+
+  const handleListUser = () => {
+    setButtonHandle("listUser");
+    setShowModal(true);
+  };
+
   return (
     <>
-      <Header>
+      {/* <Header>
         <LogoWrapper>
           <img src={require("../../images/logo.png")} />
           <h4>TC-COVID</h4>
         </LogoWrapper>
-      </Header>
+      </Header> */}
       <WrapperAll>
         <ModalGlobal showModal={showModal} CloseModal={() => CloseModal()}>
           {tagDataModal}
@@ -397,15 +413,15 @@ const Account02 = () => {
               <i className="fa-regular fa-circle-check"></i>Hoàn Thành
             </BtnDone>
             <BtnDelete onClick={handleDelete}>
-              <i className="fa-solid fa-trash-can-clock"></i>Xoá Bỏ
+            <i className="fa-regular fa-trash-can-clock"></i>Xoá Bỏ
             </BtnDelete>
             <BtnClose onClick={handleLeave}>
               <i className="fa-regular fa-right-from-bracket"></i>Thoát Phòng
             </BtnClose>
             <WrapperIcon>
               <IconChat />
-              <IconInformation />
-              <IconListUser />
+              <IconInformation onClick={handleInformation} />
+              <IconListUser onClick={handleListUser} />
               <IconLock />
             </WrapperIcon>
           </MenuHandle>

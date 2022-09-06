@@ -1,7 +1,8 @@
 import React from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import isEmpty from "validator/lib/isEmpty";
+
 import {
   LoginContainer,
   LoginBtnWrapper,
@@ -24,12 +25,14 @@ import {
   LogintoSignUpP,
   LogintoSignUpLink,
 } from "./LoginElements";
+import LoginApi from "../../api/loginApi";
 
 const Login = () => {
   const messeage = {};
   const [cccd, setCccd] = useState("");
   const [password, setPassword] = useState("");
   const [validationMsg, setValidationMsg] = useState({});
+  let navigate = useNavigate();
 
   const handleCCCD = (e) => {
     setCccd(e.target.value);
@@ -65,38 +68,35 @@ const Login = () => {
     if (Object.keys(messeage).length > 0) return false;
     return true;
   };
+
   const OnClickSubmitLogin = () => {
     const isValid = validateAll();
-    if (!isValid) return;
-    //call api
-    // axios
-    //   .get(
-    //     "https://api.covid19api.com/country/vietnam?from=2021-10-01T00%3A00%3A00Z&to=2021-10-20T00%3A00%3A00Z"
-    //   )
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    else {
-      
-      axios
-        .post("https://tc-covid-json-server.herokuapp.com/doctors/login", {
-          IdCard: cccd,
-          password: password,
-        })
-        .then(function (response) {
+    if (isValid) {
+      const fetchLogin = async () => {
+        try {
+          const response = await LoginApi.postAll({
+            IdCard: cccd,
+            password: password,
+          });
+
           console.log(response);
-          if (response.data == false) {
+          console.log(response.data);
+          let responseData = response.data;
+          console.log("check variables:", responseData);
+          if (responseData === false) {
+            console.log(123);
             messeage.cccd = "Mã căng cước không hợp lệ";
             messeage.password = "Mật khẩu không hợp lệ";
+            console.log(messeage);
             setValidationMsg(messeage);
+          } else {
+            navigate("/HomeAccount");
           }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        } catch (error) {
+          console.log("Failed to feecht data :", error);
+        }
+      };
+      fetchLogin();
     }
   };
 
