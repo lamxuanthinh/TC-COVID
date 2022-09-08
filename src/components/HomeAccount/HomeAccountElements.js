@@ -212,14 +212,13 @@ export const ModalContentProfile = styled.div`
         border-radius: 50%;
       }
     }
-    
+
     .Content {
       margin: 0 auto;
       p {
-      padding: 10px;
+        padding: 10px;
+      }
     }
-    }
-    
   }
 `;
 export const BtnLogoutAccount = styled.button`

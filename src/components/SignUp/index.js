@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
-import Loader from "../Loader";
 import isEmpty from "validator/lib/isEmpty";
 import Modal from "../Modal";
 import {
@@ -33,7 +31,7 @@ import {
 const SignUp = () => {
   const colorStep = true;
   const messeage = {};
-  const [loading, setLoading] = useState(false);
+
   const [step, setStep] = useState(0);
   const [check, setCheck] = useState(0);
   // slider 1
@@ -55,7 +53,20 @@ const SignUp = () => {
   const [validationMsg, setValidationMsg] = useState({});
 
   // Modal
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
+  console.log(showModal);
+
+  const dataSubmit = {
+    IdCard: cccd,
+    phoneNumber: phoneNumber,
+    name: fullName,
+    gender: gender,
+    address: address,
+    dateOfBirth: age,
+    role: role,
+    password: password,
+    image: certified,
+  };
 
   //  start Slider 01
   const handleCccd = (e) => {
@@ -164,8 +175,8 @@ const SignUp = () => {
 
   //  start Slider 04
   const handleCertified = (e) => {
-    setCertified(e.target.value);
-    if (isEmpty(e.target.value)) {
+    setCertified(e.target.files[0].name);
+    if (isEmpty(e.target.files[0].name)) {
       const certifiedMsg = "Vui lòng nhập ảnh hợp lệ";
       setValidationMsg({ ...validationMsg, certified: certifiedMsg });
     } else {
@@ -266,7 +277,6 @@ const SignUp = () => {
         if (isValid04) {
           setStep(step + 1);
           setCheck(check - 100);
-          console.log(step);
         }
         break;
       }
@@ -276,29 +286,23 @@ const SignUp = () => {
     setStep(step - 1);
     setCheck(check + 100);
   };
-
-  // useEffect(()=> {
-
-  // },[])
-
   // form completed and call api
   const formComplete = () => {
-    let isValid05 = validateAll05();
+    const isValid05 = validateAll05();
     if (isValid05) {
       setStep(5);
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        setShowModal(!showModal);
-      }, 2000);
+      setShowModal(true);
     }
   };
 
   return (
     <>
-      {loading ? <Loader /> : null}
-      <Modal setShowModal={setShowModal} showModal={showModal} />
-      <SignUpContainer loading={loading} showModal={showModal}>
+      <Modal
+        setShowModal={setShowModal}
+        showModal={showModal}
+        dataSubmit={dataSubmit}
+      />
+      <SignUpContainer showModal={showModal}>
         <WrapperHidden>
           <SignUpWrapper>
             <SignUpTitle>Đăng Kí</SignUpTitle>
@@ -429,7 +433,7 @@ const SignUp = () => {
                 <SignUpFieldWrapper>
                   <SignUpLable>
                     <SignUpP>Số Điện Thoại</SignUpP>
-                    <SignUpInput onBlur={handelPhoneNumber} type="tel" />
+                    <SignUpInput type="tel" onBlur={handelPhoneNumber} />
                     <span>&nbsp;{validationMsg.phoneNumber}</span>
                   </SignUpLable>
                   <SignUpLable>
@@ -450,12 +454,16 @@ const SignUp = () => {
                 <SignUpFieldWrapper>
                   <SignUpLable>
                     <SignUpP>Ngày Sinh</SignUpP>
-                    <SignUpInput onBlur={handleAge} type="text" />
+                    <SignUpInput type="date" onBlur={handleAge} />
                     <span>&nbsp;{validationMsg.age}</span>
                   </SignUpLable>
                   <SignUpLable>
                     <SignUpP>Giới Tính</SignUpP>
-                    <SignUpInput onBlur={handleGender} type="text" />
+                    <select className="selectInput" onBlur={handleGender}>
+                      <option defaultValue>Giới Tính</option>
+                      <option value="Nam">Nam</option>
+                      <option value="Nu">Nữ</option>
+                    </select>
                     <span>&nbsp;{validationMsg.gender}</span>
                   </SignUpLable>
                   <SignUpBtnWrapper>
@@ -471,12 +479,33 @@ const SignUp = () => {
                 <SignUpFieldWrapper>
                   <SignUpLable>
                     <SignUpP>Ảnh Xác Thực Chứng Chỉ Hành Nghề</SignUpP>
-                    <SignUpInput onBlur={handleCertified} type="text" />
+                    <label htmlFor="file-upload" className="fileInput">
+                      <p>{certified}</p>
+                      <input
+                        id="file-upload"
+                        className="file"
+                        type="file"
+                        onBlur={handleCertified}
+                      />
+                    </label>
                     <span>&nbsp;{validationMsg.certified}</span>
                   </SignUpLable>
                   <SignUpLable>
                     <SignUpP>Vai Trò</SignUpP>
-                    <SignUpInput type="text" onBlur={handleRole} />
+                    <select className="selectInput" onBlur={handleRole}>
+                      <option defaultValue>
+                        Vai Trò Trong Hệ Thống Tiêm Chủng
+                      </option>
+                      <option value="ytakiemtrasuckhoe">
+                        Y Tá Kiểm Tra Sức Khoẻ
+                      </option>
+                      <option value="bacsikiemtrasuckhoe">
+                        Bác Sĩ Kiểm Tra Sức Khoẻ
+                      </option>
+                      <option value="bacsitiemvacxin">
+                        Bác Sĩ Tiêm Vaccine
+                      </option>
+                    </select>
                     <span>&nbsp;{validationMsg.role}</span>
                   </SignUpLable>
                   <SignUpBtnWrapper>

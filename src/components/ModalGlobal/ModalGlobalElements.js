@@ -15,7 +15,7 @@ export const OverLay = styled.div`
 
   background-color: rgba(0, 0, 0, 0.4);
 
-  z-index: 1;
+  z-index: 999;
 
   @keyframes fadeIn {
     from {
@@ -63,9 +63,9 @@ export const ModalClose = styled.div`
   i {
     padding: 10px 15px;
     font-size: 2rem;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     &:hover {
-      transition: all .3s ease-in-out;
+      transition: all 0.3s ease-in-out;
       opacity: 0.8;
     }
   }

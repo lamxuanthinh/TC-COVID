@@ -26,12 +26,15 @@ import {
   LogintoSignUpLink,
 } from "./LoginElements";
 import LoginApi from "../../api/loginApi";
+import Loader from "../Loader";
 
 const Login = () => {
   const messeage = {};
+  const messeageToApi = {};
   const [cccd, setCccd] = useState("");
   const [password, setPassword] = useState("");
   const [validationMsg, setValidationMsg] = useState({});
+  const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
 
   const handleCCCD = (e) => {
@@ -71,37 +74,38 @@ const Login = () => {
 
   const OnClickSubmitLogin = () => {
     const isValid = validateAll();
+
     if (isValid) {
-      const fetchLogin = async () => {
+      setLoading(true);
+      console.log("check", loading);
+      const postLogin = async () => {
         try {
           const response = await LoginApi.postAll({
             IdCard: cccd,
             password: password,
           });
 
-          console.log(response);
-          console.log(response.data);
-          let responseData = response.data;
-          console.log("check variables:", responseData);
+          const responseData = response.data;
+
           if (responseData === false) {
-            console.log(123);
-            messeage.cccd = "Mã căng cước không hợp lệ";
-            messeage.password = "Mật khẩu không hợp lệ";
-            console.log(messeage);
-            setValidationMsg(messeage);
+            messeageToApi.cccd = "Mã căng cước không hợp lệ";
+            messeageToApi.password = "Mật khẩu không hợp lệ";
+            setValidationMsg(messeageToApi);
           } else {
             navigate("/HomeAccount");
           }
         } catch (error) {
           console.log("Failed to feecht data :", error);
         }
+        setLoading(false);
       };
-      fetchLogin();
+      postLogin();
     }
   };
 
   return (
     <>
+      {loading ? <Loader></Loader> : null}
       <LoginContainer>
         <LoginWrapper>
           <LoginWraperImg>
@@ -115,11 +119,13 @@ const Login = () => {
               <LoginInput type="text" onBlur={handleCCCD} />
               <span>&nbsp;{validationMsg.cccd}</span>
             </LoginLable>
+
             <LoginLable>
               <LoginP>Mật Khẩu</LoginP>
               <LoginInput type="password" onBlur={handlePassword} />
               <span>&nbsp;{validationMsg.password}</span>
             </LoginLable>
+
             <LoginBtnWrapper>
               <BtnLink onClick={OnClickSubmitLogin}>Đăng Nhập</BtnLink>
             </LoginBtnWrapper>

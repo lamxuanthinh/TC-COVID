@@ -413,7 +413,7 @@ const Account02 = () => {
               <i className="fa-regular fa-circle-check"></i>Hoàn Thành
             </BtnDone>
             <BtnDelete onClick={handleDelete}>
-            <i className="fa-regular fa-trash-can-clock"></i>Xoá Bỏ
+              <i className="fa-regular fa-trash-can-clock"></i>Xoá Bỏ
             </BtnDelete>
             <BtnClose onClick={handleLeave}>
               <i className="fa-regular fa-right-from-bracket"></i>Thoát Phòng

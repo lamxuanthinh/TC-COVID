@@ -7,6 +7,7 @@ import HomeAccount from "./components/HomeAccount";
 import Loader from "./components/Loader";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import VaccinationRegister from "./components/VaccinationRegister";
 import Home from "./pages";
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
         <Route path="/01" element={<Account01 />} />
         <Route path="/02" element={<Account02 />} />
         <Route path="/03" element={<Account03 />} />
+        <Route path="/vaccinationRegister" element={<VaccinationRegister />} />
+        <Route path="*" element={"NOT FOUND"} />
       </Routes>
     </div>
   );

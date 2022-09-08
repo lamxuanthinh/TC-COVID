@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import VideoBackgroundHome from "../../videos/backgroundHome.mp4";
+import VideoBackgroundHome from "../../videos/backgroundHome02.mp4";
 import {
   HeroContainer,
   HeroBg,

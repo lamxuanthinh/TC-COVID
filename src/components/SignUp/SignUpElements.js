@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const SignUpContainer = styled.div`
-  display: ${(props) => (props.loading || props.showModal ? "none" : "flex")};
+  /* display: ${(props) => (props.loading || props.showModal ? "none" : "flex")}; */
+  display: ${(props) => (props.showModal ? "none" : "flex")};
+  /* display: flex; */
   justify-content: center;
   height: 100vh;
   background-color: #01bf71;
@@ -98,7 +100,46 @@ export const SignUpH3 = styled.h3`
 export const SignUpFieldWrapper = styled.div``;
 
 export const SignUpLable = styled.div`
-  /* padding: 5px 0; */
+  .selectInput {
+    width: 100%;
+    height: 50px;
+    outline: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 5px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    &:focus {
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+    }
+  }
+
+  .fileInput {
+    display: inline-block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    outline: none;
+    text-align: center;
+    margin: 0 auto;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    &:focus {
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+    }
+
+    .file {
+      position: absolute;
+      top: -999px;
+    }
+
+    p {
+      padding-left: 20px;
+    }
+  }
+
   span {
     font-size: 14px;
     color: red;
@@ -115,12 +156,13 @@ export const SignUpInput = styled.input`
   width: 100%;
   height: 50px;
   outline: none;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-bottom: 5px;
   border: 1px solid lightgrey;
   border-radius: 3px;
   &:focus {
-    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
   }
 `;
 

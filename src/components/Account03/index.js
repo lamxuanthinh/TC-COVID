@@ -170,9 +170,7 @@ const Account03 = () => {
                     setTypeVaccination(e.target.value);
                   }}
                 >
-                  <option disabled="disabled" selected="selected">
-                    Loại Vaccine
-                  </option>
+                  <option disabled defaultValue>Loại Vaccine</option>
                   <option>AstraZeneca</option>
                   <option>Gam-COVID-Vac</option>
                   <option>Vero Cell</option>
@@ -190,7 +188,7 @@ const Account03 = () => {
                 <i className="fa-regular fa-circle-check"></i>Hoàn Thành
               </BtnDone>
               <BtnDelete onClick={handleDelete}>
-              <i className="fa-regular fa-trash-can-clock"></i>Xoá Bỏ
+                <i className="fa-regular fa-trash-can-clock"></i>Xoá Bỏ
               </BtnDelete>
               <BtnClose onClick={handleLeave}>
                 <i className="fa-regular fa-right-from-bracket"></i>Thoát Phòng
