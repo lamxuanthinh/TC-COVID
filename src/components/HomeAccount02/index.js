@@ -1,10 +1,8 @@
 import React from "react";
+import ModalGlobal from "../ModalGlobal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import createRoom from "../../api/createRoom";
-import ModalGlobal from "../ModalGlobal";
 import Loader from "../Loader";
-
 import {
   HomeAccountContainer,
   NavbarWrapper,
@@ -22,15 +20,17 @@ import {
   IconBtn,
   InputWrapper,
 } from "./HomeAccountElements";
+import createRoom from "../../api/createRoom";
 
-const HomeAccount = () => {
-  const [showLoading, setShowLoading] = useState(false);
+const HomeAccount01 = () => {
   const name = sessionStorage.getItem("name");
   const age = sessionStorage.getItem("age");
   const role = sessionStorage.getItem("role");
   const cccd = sessionStorage.getItem("cccd");
   const navigate = useNavigate();
+  const [showLoading, setShowLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [idRoom, setIdRoom] = useState("");
 
   const handleProfile = () => {
     setShowModal(true);
@@ -40,18 +40,25 @@ const HomeAccount = () => {
     setShowModal(false);
   };
 
-  const handleCreateRoom = () => {
+  const handleCheckIDRoom = () => {
     setShowLoading(true);
-    let RoomID03 = Math.floor(Math.random() * 999999) + 100000;
-    sessionStorage.setItem("RoomID03", RoomID03);
     const postRoomID = async () => {
       try {
-        const response = await createRoom.postAll({
+        const response = await createRoom.postCheckRoom({
+          RoomID: idRoom,
           IdCard: cccd,
-          RoomID: RoomID03,
         });
-        setShowLoading(false);
-        navigate("/03");
+        console.log("check data", response);
+
+        if (role === "Y Tá Kiểm Tra Sức Khoẻ") {
+          sessionStorage.setItem("RoomID01", idRoom);
+          navigate("/01");
+          setShowLoading(false);
+        } else {
+          sessionStorage.setItem("RoomID02", idRoom);
+          navigate("/02");
+          setShowLoading(false);
+        }
       } catch (error) {
         console.log("Failed to fetch data :", error);
       }
@@ -110,12 +117,17 @@ const HomeAccount = () => {
               trách nhiệm trước pháp luật.
             </p>
             <RoomWrapper>
-              <RomBtn onClick={handleCreateRoom}>
+              <RomBtn onClick={handleCheckIDRoom}>
                 <i class="fa-regular fa-circle-plus"></i>
-                Tạo Phòng
+                Vào Phòng
               </RomBtn>
               <InputWrapper>
-                <input placeholder="Nhập vào id phòng" />
+                <input
+                  onChange={(e) => {
+                    setIdRoom(e.target.value);
+                  }}
+                  placeholder="Nhập vào id phòng"
+                />
               </InputWrapper>
             </RoomWrapper>
           </HomeAccountContentWrapper>
@@ -125,4 +137,4 @@ const HomeAccount = () => {
   );
 };
 
-export default HomeAccount;
+export default HomeAccount01;

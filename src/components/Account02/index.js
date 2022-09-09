@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import ModalGlobal from "../ModalGlobal";
 import ModalComplete from "./ModalComplete";
@@ -6,6 +6,7 @@ import ModalDelete from "./ModalDelete";
 import ModalLeave from "./ModalLeave";
 import ModalListUser from "./ ModalListUser";
 import ModalInformation from "./ModalInformation";
+import controllerRoom from "../../api/controllerRoom";
 
 import {
   WrapperAll,
@@ -32,9 +33,11 @@ import {
 } from "./Account02Elements";
 
 const Account02 = () => {
+  let count = 0;
   const [showModal, setShowModal] = useState(false);
   const [buttonHandle, setButtonHandle] = useState("");
   const [dataRadio, setDataRadio] = useState([]);
+  const [dataUser, setDataUser] = useState("");
 
   const handleRadio = (e) => {
     setDataRadio([...dataRadio, e.target.value]);
@@ -44,11 +47,46 @@ const Account02 = () => {
     setShowModal(false);
   };
 
+  const RoomID02 = sessionStorage.getItem("RoomID02");
+  console.log(RoomID02);
+  // useEffect(() => {
+  const getUsers02 = async () => {
+    try {
+      const response = await controllerRoom.getUser02({
+        RoomID: RoomID02,
+      });
+      setDataUser(response);
+      console.log(response);
+      console.log("check data Account 02 :", response.data);
+    } catch (error) {
+      console.log("Failed to fetch data :", error);
+    }
+  };
+  getUsers02();
+  // }, [a]);
+
   let tagDataModal;
   if (buttonHandle === "complete") {
-    tagDataModal = <ModalComplete dataRadio={dataRadio.length}></ModalComplete>;
+    tagDataModal = (
+      <ModalComplete
+        dataRadio={dataRadio.length}
+        CloseModal={() => CloseModal()}
+        Count={() => {
+          count++;
+        }}
+        dataUser={dataUser}
+      ></ModalComplete>
+    );
   } else if (buttonHandle === "delete") {
-    tagDataModal = <ModalDelete></ModalDelete>;
+    tagDataModal = (
+      <ModalDelete
+        CloseModal={() => CloseModal()}
+        Count={() => {
+          count++;
+        }}
+        dataUser={dataUser}
+      ></ModalDelete>
+    );
   } else if (buttonHandle === "leave") {
     tagDataModal = <ModalLeave></ModalLeave>;
   } else if (buttonHandle === "listUser") {
@@ -100,22 +138,24 @@ const Account02 = () => {
           <ListInformations>
             <InformationItem>
               <IconName />
-              <DataInformations>Tên:&nbsp;Lâm Xuân Thịnh</DataInformations>
+              <DataInformations>Tên:&nbsp;{dataUser.name}</DataInformations>
             </InformationItem>
 
             <InformationItem>
               <IconGender />
-              <DataInformations>Giới Tính:&nbsp;Nam</DataInformations>
+              <DataInformations>
+                Giới Tính:&nbsp;{dataUser.gender}
+              </DataInformations>
             </InformationItem>
             <InformationItem>
               <IconLimitedCard />
-              <DataInformations>CCCD:&nbsp;092083928390</DataInformations>
+              <DataInformations>CCCD:&nbsp;{dataUser.IdCard}</DataInformations>
             </InformationItem>
 
             <InformationItem>
               <IconPhone />
               <DataInformations>
-                Số Điện Thoại:&nbsp;0352786331
+                Số Điện Thoại:&nbsp;{dataUser.phoneNumber}
               </DataInformations>
             </InformationItem>
           </ListInformations>

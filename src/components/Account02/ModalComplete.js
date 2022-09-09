@@ -1,15 +1,35 @@
 import React from "react";
 import styled from "styled-components";
+import controllerRoom from "../../api/controllerRoom";
 
-const ModalComplete = ({ dataRadio }) => {
+const ModalComplete = ({ dataRadio, CloseModal, Count, dataUser }) => {
   let checkData = true;
   if (dataRadio >= 5) {
     checkData = false;
   }
+  const RoomID02 = sessionStorage.getItem("RoomID02");
+  const handleCompleteDataAccount02 = () => {
+    console.log(1213);
+    CloseModal();
+    Count();
+    console.log(dataUser.IdCard);
+    const postDataAccount02 = async () => {
+      try {
+        const response = await controllerRoom.postAccount02({
+          RoomId: RoomID02,
+          IdCard: dataUser.IdCard,
+        });
+        console.log("check data", response);
+      } catch (error) {
+        console.log("Failed to fetch data :", error);
+      }
+    };
+    postDataAccount02();
+  };
 
   return (
     <>
-      <ContainerModalComplete checkData={checkData} >
+      <ContainerModalComplete checkData={checkData}>
         {checkData ? (
           <>
             <img src={require("../../images/complete.png")} />
@@ -37,7 +57,10 @@ const ModalComplete = ({ dataRadio }) => {
           <li></li>
         </ul> */}
 
-        <BtnComplete checkData={checkData} >
+        <BtnComplete
+          checkData={checkData}
+          onClick={handleCompleteDataAccount02}
+        >
           <i className="fa-light fa-clipboard-list-check"></i>
           Xác Thực
         </BtnComplete>
@@ -63,7 +86,7 @@ const ContainerModalComplete = styled.div`
   div {
     font-size: 1.2rem;
     text-align: center;
-    color: ${({checkData}) => (checkData ? "#19bc9c" : "#d0243f")};
+    color: ${({ checkData }) => (checkData ? "#19bc9c" : "#d0243f")};
     padding: 15px;
 
     i {
@@ -93,7 +116,7 @@ const BtnComplete = styled.button`
   border: none;
   border-radius: 5px;
   padding: 12px;
-  background-color: ${({checkData}) => (checkData ? "#19bc9c" : "#d0243f")};
+  background-color: ${({ checkData }) => (checkData ? "#19bc9c" : "#d0243f")};
   font-size: 1rem;
   transition: all 0.3s ease-in-out;
   i {

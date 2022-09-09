@@ -2,16 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 const ModalInformation = () => {
+  const RoomID = sessionStorage.getItem("RoomID03");
+  const name = sessionStorage.getItem("name");
   return (
     <ContainerModalInformation>
       <h1>Thông Tin Phòng</h1>
       <div>
         <i className="fa-solid fa-display-code"></i>
-        Mã phòng : 738934
+        Mã phòng : {RoomID}
       </div>
       <div>
         <i className="fa-regular fa-user-nurse"></i>
-        Người tạo phòng : Lâm Xuân Thịnh (bạn)
+        Người tạo phòng : {name} (bạn)
       </div>
       <div>
         <i className="fa-regular fa-triangle-exclamation"></i>

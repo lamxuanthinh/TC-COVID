@@ -27,10 +27,11 @@ import {
 } from "./LoginElements";
 import LoginApi from "../../api/loginApi";
 import Loader from "../Loader";
+import { RiContactsBookLine } from "react-icons/ri";
 
 const Login = () => {
-  const messeage = {};
-  const messeageToApi = {};
+  const message = {};
+  const messageToApi = {};
   const [cccd, setCccd] = useState("");
   const [password, setPassword] = useState("");
   const [validationMsg, setValidationMsg] = useState({});
@@ -61,14 +62,14 @@ const Login = () => {
 
   const validateAll = () => {
     if (isEmpty(cccd)) {
-      messeage.cccd = "Mã căng cước không hợp lệ";
+      message.cccd = "Mã căng cước không hợp lệ";
     }
     if (isEmpty(password)) {
-      messeage.password = "Mật khẩu không hợp lệ";
+      message.password = "Mật khẩu không hợp lệ";
     }
 
-    setValidationMsg(messeage);
-    if (Object.keys(messeage).length > 0) return false;
+    setValidationMsg(message);
+    if (Object.keys(message).length > 0) return false;
     return true;
   };
 
@@ -77,25 +78,33 @@ const Login = () => {
 
     if (isValid) {
       setLoading(true);
-      console.log("check", loading);
       const postLogin = async () => {
         try {
           const response = await LoginApi.postAll({
             IdCard: cccd,
             password: password,
           });
-
           const responseData = response.data;
 
           if (responseData === false) {
-            messeageToApi.cccd = "Mã căng cước không hợp lệ";
-            messeageToApi.password = "Mật khẩu không hợp lệ";
-            setValidationMsg(messeageToApi);
+            messageToApi.cccd = "Mã căng cước không hợp lệ";
+            messageToApi.password = "Mật khẩu không hợp lệ";
+            setValidationMsg(messageToApi);
           } else {
-            navigate("/HomeAccount");
+            sessionStorage.setItem("token", "9999");
+            sessionStorage.setItem("name", response.name);
+            sessionStorage.setItem("age", response.dateOfBirth);
+            sessionStorage.setItem("cccd", response.IdCard);
+            sessionStorage.setItem("role", response.role);
+
+            if (response.role === "Bác sĩ tiêm chủng") {
+              navigate("/homeAccount=0033");
+            } else {
+              navigate("/homeAccount=001122");
+            }
           }
         } catch (error) {
-          console.log("Failed to feecht data :", error);
+          console.log("Failed to fetch data :", error);
         }
         setLoading(false);
       };

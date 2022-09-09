@@ -1,14 +1,37 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import controllerRoom from "../../api/controllerRoom";
 
 const ModalLeave = () => {
+  const navigate = useNavigate();
+  const cccd = sessionStorage.getItem("cccd");
+  const RoomID01 = sessionStorage.getItem("RoomID01");
+
+  const handleLeaveRoom = () => {
+    const leaveRoom = async () => {
+      try {
+        const response = await controllerRoom.leaveRoom({
+          RoomID: RoomID01,
+          IdCard: cccd,
+        });
+        console.log("check data", response);
+        if (response === true) {
+          navigate("/homeAccount=001122");
+        }
+      } catch (error) {
+        console.log("Failed to fetch data :", error);
+      }
+    };
+    leaveRoom();
+  };
   return (
     <>
       <ContainerModalDelete>
         <img src={require("../../images/Leave.png")} />
         <h2>Bạn có chắc chắn thoát</h2>
-        <BtnLeave>
-        <i className="fa-regular fa-triangle-exclamation"></i>
+        <BtnLeave onClick={handleLeaveRoom}>
+          <i className="fa-regular fa-triangle-exclamation"></i>
           Thoát
         </BtnLeave>
       </ContainerModalDelete>

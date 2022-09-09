@@ -1,13 +1,33 @@
 import React from "react";
 import styled from "styled-components";
+import controllerRoom from "../../api/controllerRoom";
 
-const ModalDelete = () => {
+const ModalDelete = ({ CloseModal, Count, dataUser }) => {
+  const RoomID03 = sessionStorage.getItem("RoomID03");
+  const handleDeleteDataUser = () => {
+    console.log(1213);
+    CloseModal();
+    Count();
+    const postDataAccount03 = async () => {
+      try {
+        const response = await controllerRoom.deleteAccount03({
+          RoomId: RoomID03,
+          IdCard: dataUser.IdCard,
+        });
+
+        console.log("check data", response);
+      } catch (error) {
+        console.log("Failed to fetch data :", error);
+      }
+    };
+    postDataAccount03();
+  };
   return (
     <ContainerModalDelete>
       <img src={require("../../images/warning.png")} />
       <h2>Xoá Lâm Xuân Thịnh Tạm Thời</h2>
       <p>Hệ thống sẽ người này xuống cuối danh sách</p>
-      <BtnDelete>
+      <BtnDelete onClick={handleDeleteDataUser}>
         <i className="fa-regular fa-circle-exclamation"></i>
         Đồng ý
       </BtnDelete>

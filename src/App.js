@@ -1,29 +1,28 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.scss";
-import Account01 from "./components/Account01";
-import Account02 from "./components/Account02";
-import Account03 from "./components/Account03";
-import HomeAccount from "./components/HomeAccount";
 import Loader from "./components/Loader";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import VaccinationRegister from "./components/VaccinationRegister";
 import Home from "./pages";
+import Security from "./pages/Security";
 
 function App() {
+  const a = false;
+  if (a) {
+    return <Login />;
+  }
+
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/homeAccount" element={<HomeAccount />} />
         <Route path="/1" element={<Loader />} />
-        <Route path="/01" element={<Account01 />} />
-        <Route path="/02" element={<Account02 />} />
-        <Route path="/03" element={<Account03 />} />
         <Route path="/vaccinationRegister" element={<VaccinationRegister />} />
-        <Route path="*" element={"NOT FOUND"} />
+        <Route path="*" element={<Security />} />
+        
       </Routes>
     </div>
   );

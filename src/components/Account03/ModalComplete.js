@@ -1,8 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import isEmpty from "validator/lib/isEmpty";
+import controllerRoom from "../../api/controllerRoom";
 
-const ModalComplete = ({ typeVaccination, addressVaccination }) => {
+const ModalComplete = ({
+  typeVaccination,
+  addressVaccination,
+  CloseModal,
+  Count,
+  dataUser,
+}) => {
   let checkData = true;
   let messageWarning;
 
@@ -20,6 +27,24 @@ const ModalComplete = ({ typeVaccination, addressVaccination }) => {
       messageWarning = "Vui lòng điền thông tin nơi tiêm";
     }
   }
+  const RoomID03 = sessionStorage.getItem("RoomID03");
+  const handleCompleteDataAccount03 = () => {
+    console.log(1213);
+    CloseModal();
+    Count();
+    const postDataAccount03 = async () => {
+      try {
+        const response = await controllerRoom.completedAccount03({
+          RoomId: RoomID03,
+          IdCard: dataUser.IdCard,
+        });
+        console.log("check data", response);
+      } catch (error) {
+        console.log("Failed to fetch data :", error);
+      }
+    };
+    postDataAccount03();
+  };
 
   return (
     <>
@@ -42,7 +67,10 @@ const ModalComplete = ({ typeVaccination, addressVaccination }) => {
                 <i className="fa-light fa-clipboard-list-check"></i>
                 In Phiếu
               </BtnComplete>
-              <BtnComplete checkData={checkData}>
+              <BtnComplete
+                checkData={checkData}
+                onClick={handleCompleteDataAccount03}
+              >
                 <i className="fa-light fa-clipboard-list-check"></i>
                 Xác Thực
               </BtnComplete>

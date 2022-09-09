@@ -26,6 +26,11 @@ const Account01 = () => {
     console.log(error);
   };
 
+  // handle menu icon
+  const CloseModal = () => {
+    setShowModal(false);
+  };
+
   const handleScan = (data) => {
     if (data !== null) {
       const dataScanner = data.text;
@@ -34,23 +39,22 @@ const Account01 = () => {
     }
   };
 
-  // handle menu icon
-  const CloseModal = () => {
-    setShowModal(false);
-  };
-
   const handleInformation = () => {
-    setTagDataModal(<ModalInformation></ModalInformation>);
+    setTagDataModal(
+      <ModalInformation CloseModal={() => CloseModal()}></ModalInformation>
+    );
     setShowModal(true);
   };
 
   const handleListUser = () => {
-    setTagDataModal(<ModalListUser></ModalListUser>);
+    setTagDataModal(
+      <ModalListUser CloseModal={() => CloseModal()}></ModalListUser>
+    );
     setShowModal(true);
   };
 
   const handleLeave = () => {
-    setTagDataModal(<ModalLeave></ModalLeave>);
+    setTagDataModal(<ModalLeave CloseModal={() => CloseModal()}></ModalLeave>);
     setShowModal(true);
   };
 

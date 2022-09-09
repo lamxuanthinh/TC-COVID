@@ -1,20 +1,48 @@
 import React from "react";
 import styled from "styled-components";
+import controllerRoom from "../../api/controllerRoom";
 
 const ScannerData = ({ dataScanner }) => {
-  const formatData = dataScanner.split("!");
+  const formatData = dataScanner.split("|");
+  const RoomID01 = sessionStorage.getItem("RoomID01");
+
+  const handlePostDataAccount01 = () => {
+    const postDataAccount01 = async () => {
+      console.log(formatData);
+      console.log(RoomID01);
+      console.log(formatData[0]);
+      try {
+        const response = await controllerRoom.postDataAccount01({
+          RoomId: RoomID01,
+          IdCard: formatData[0],
+          name: formatData[1],
+          dateOfBirth: formatData[2],
+          gender: formatData[3],
+          phoneNumber: formatData[4],
+          address: formatData[5],
+        });
+
+        console.log("check data", response);
+      } catch (error) {
+        console.log("Failed to fetch data :", error);
+      }
+    };
+    postDataAccount01();
+  };
+
   return (
     <>
       <ContainerScannerData>
         <h2>Xác Thực Thông Tin</h2>
         <WrapperContent>
-          <p>Tên: {formatData[0]}</p>
-          <p>Ngày Sinh: {formatData[1]}</p>
-          <p>Giới Tính: {formatData[2]}</p>
-          <p>Số Điện Thoại: {formatData[0]}</p>
-          <p>Địa Chỉ: {formatData[3]}</p>
+          <p>Mã Căng Cước: {formatData[0]}</p>
+          <p>Tên: {formatData[1]}</p>
+          <p>Ngày Sinh: {formatData[2]}</p>
+          <p>Giới Tính: {formatData[3]}</p>
+          <p>Số Điện Thoại: {formatData[4]}</p>
+          <p>Địa Chỉ: {formatData[5]}</p>
         </WrapperContent>
-        <BtnDone>
+        <BtnDone onClick={handlePostDataAccount01}>
           <i className="fa-regular fa-circle-check"></i>
           Xác Thực
         </BtnDone>

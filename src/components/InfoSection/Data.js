@@ -15,7 +15,7 @@ export const HomeObjOne = {
     primary: true,
     btnBg: true,
     btnColor: true,
-    dataLink: ''
+    dataLink: '/vaccinationRegister'
 }
 
 export const HomeObjTow = {

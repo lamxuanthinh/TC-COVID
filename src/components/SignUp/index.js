@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import isEmpty from "validator/lib/isEmpty";
 import Modal from "../Modal";
+import signUpApi from "../../api/signUpApi";
+
 import {
   SignUpContainer,
   ProcessWrapper,
@@ -53,9 +55,9 @@ const SignUp = () => {
   const [validationMsg, setValidationMsg] = useState({});
 
   // Modal
-  const [showModal, setShowModal] = useState(true);
-  console.log(showModal);
-
+  const [openModal, setOpenModal] = useState(false);
+  // phone code
+  const [phoneCode, setPhoneCode] = useState(1);
   const dataSubmit = {
     IdCard: cccd,
     phoneNumber: phoneNumber,
@@ -245,6 +247,12 @@ const SignUp = () => {
   };
   // end Slider 05
 
+  // controller modal
+
+  const CloseModal = () => {
+    setOpenModal(false);
+  };
+
   // next sider and check completed
   const nextSlider = () => {
     switch (step) {
@@ -291,18 +299,32 @@ const SignUp = () => {
     const isValid05 = validateAll05();
     if (isValid05) {
       setStep(5);
-      setShowModal(true);
+      setOpenModal(true);
+      const postSignUpPhoneCode = async () => {
+        try {
+          const responsePhone = await signUpApi.postPhoneCode({
+            phoneNumber: dataSubmit.phoneNumber,
+          });
+          setPhoneCode(responsePhone);
+        } catch (error) {
+          console.log("Failed to post phone code", error);
+        }
+      };
+      postSignUpPhoneCode();
     }
   };
 
   return (
     <>
       <Modal
-        setShowModal={setShowModal}
-        showModal={showModal}
+        openModal={openModal}
+        CloseModal={() => {
+          CloseModal();
+        }}
         dataSubmit={dataSubmit}
-      />
-      <SignUpContainer showModal={showModal}>
+        responsePhoneCode={phoneCode}
+      ></Modal>
+      <SignUpContainer>
         <WrapperHidden>
           <SignUpWrapper>
             <SignUpTitle>Đăng Kí</SignUpTitle>
@@ -462,7 +484,7 @@ const SignUp = () => {
                     <select className="selectInput" onBlur={handleGender}>
                       <option defaultValue>Giới Tính</option>
                       <option value="Nam">Nam</option>
-                      <option value="Nu">Nữ</option>
+                      <option value="Nữ">Nữ</option>
                     </select>
                     <span>&nbsp;{validationMsg.gender}</span>
                   </SignUpLable>
@@ -496,15 +518,13 @@ const SignUp = () => {
                       <option defaultValue>
                         Vai Trò Trong Hệ Thống Tiêm Chủng
                       </option>
-                      <option value="ytakiemtrasuckhoe">
+                      <option value="Y Tá Kiểm Tra Sức Khoẻ">
                         Y Tá Kiểm Tra Sức Khoẻ
                       </option>
-                      <option value="bacsikiemtrasuckhoe">
+                      <option value="Bác Sĩ Kiểm Tra Sức Khoẻ">
                         Bác Sĩ Kiểm Tra Sức Khoẻ
                       </option>
-                      <option value="bacsitiemvacxin">
-                        Bác Sĩ Tiêm Vaccine
-                      </option>
+                      <option value="bacsitiemvacxin">Bác sĩ tiêm chủng</option>
                     </select>
                     <span>&nbsp;{validationMsg.role}</span>
                   </SignUpLable>

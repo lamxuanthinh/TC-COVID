@@ -1,11 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalGlobal from "../ModalGlobal";
 import ModalComplete from "./ModalComplete";
 import ModalDelete from "./ModalDelete";
 import ModalLeave from "./ModalLeave";
 import ModalListUser from "./ ModalListUser";
 import ModalInformation from "./ModalInformation";
+import controllerRoom from "../../api/controllerRoom";
 import {
   ContainerAccount03,
   ContainerDocumentPrint,
@@ -34,14 +35,33 @@ import {
 } from "./Account03Elements";
 
 const Account03 = () => {
+  const count = 0;
   const [showModal, setShowModal] = useState(false);
   const [buttonHandle, setButtonHandle] = useState("");
   const [addressVaccination, setAddressVaccination] = useState("");
+  const [dataUser, setDataUser] = useState({});
   const [typeVaccination, setTypeVaccination] = useState("");
 
   const CloseModal = () => {
     setShowModal(false);
   };
+
+  const RoomID03 = sessionStorage.getItem("RoomID03");
+  // useEffect(() => {
+  const getUsers03 = async () => {
+    try {
+      const response = await controllerRoom.getUser03({
+        RoomID: RoomID03,
+      });
+      setDataUser(response);
+      console.log(response);
+      console.log("check data", response.data);
+    } catch (error) {
+      console.log("Failed to fetch data :", error);
+    }
+  };
+  getUsers03();
+  // }, [count]);
 
   let tagDataModal;
   if (buttonHandle === "complete") {
@@ -49,10 +69,23 @@ const Account03 = () => {
       <ModalComplete
         typeVaccination={typeVaccination}
         addressVaccination={addressVaccination}
+        CloseModal={() => CloseModal()}
+        Count={() => {
+          count++;
+        }}
+        dataUser={dataUser}
       ></ModalComplete>
     );
   } else if (buttonHandle === "delete") {
-    tagDataModal = <ModalDelete></ModalDelete>;
+    tagDataModal = (
+      <ModalDelete
+        CloseModal={() => CloseModal()}
+        Count={() => {
+          count++;
+        }}
+        dataUser={dataUser}
+      ></ModalDelete>
+    );
   } else if (buttonHandle === "leave") {
     tagDataModal = <ModalLeave></ModalLeave>;
   } else if (buttonHandle === "listUser") {
@@ -99,23 +132,27 @@ const Account03 = () => {
             <ListInformations>
               <InformationItem>
                 <IconName />
-                <DataInformations>Tên:&nbsp;Lâm Xuân Thịnh</DataInformations>
+                <DataInformations>Tên:&nbsp;{dataUser.name}</DataInformations>
               </InformationItem>
 
               <InformationItem>
                 <IconGender />
-                <DataInformations>Giới Tính:&nbsp;Nam</DataInformations>
+                <DataInformations>
+                  Giới Tính:&nbsp;{dataUser.gender}
+                </DataInformations>
               </InformationItem>
 
               <InformationItem>
                 <IconLimitedCard />
-                <DataInformations>CCCD:&nbsp;092083928390</DataInformations>
+                <DataInformations>
+                  CCCD:&nbsp;{dataUser.IdCard}
+                </DataInformations>
               </InformationItem>
 
               <InformationItem>
                 <IconPhone />
                 <DataInformations>
-                  Số Điện Thoại:&nbsp;0352786331
+                  Số Điện Thoại:&nbsp;{dataUser.phoneNumber}
                 </DataInformations>
               </InformationItem>
             </ListInformations>
@@ -170,7 +207,9 @@ const Account03 = () => {
                     setTypeVaccination(e.target.value);
                   }}
                 >
-                  <option disabled defaultValue>Loại Vaccine</option>
+                  <option disabled defaultValue>
+                    Loại Vaccine
+                  </option>
                   <option>AstraZeneca</option>
                   <option>Gam-COVID-Vac</option>
                   <option>Vero Cell</option>
@@ -222,19 +261,21 @@ const Account03 = () => {
             </div>
             <br />
             <div className="thongtin">
-              Họ và tên/Name: <span id="thongtin__name"></span>
+              Họ và tên/Name: <span id="thongtin__name">{dataUser.name}</span>
               <br />
-              Giới tính/Sex: <span id="thongtin__sex"></span>
+              Giới tính/Sex: <span id="thongtin__sex">{dataUser.gender}</span>
               <br />
               Ngày sinh/Date of birth(day/month/year):{" "}
-              <span id="thongtin__date"></span>
+              <span id="thongtin__date">{dataUser.dateOfBirth}</span>
               <br />
               Số CCCD/CMT/hộ chiếu/định danh cá nhân(ID):{" "}
-              <span id="thongtin__id"></span>
+              <span id="thongtin__id">{dataUser.IdCard}</span>
               <br />
-              Số điện thoại/Tel: <span id="thongtin__tel"></span>
+              Số điện thoại/Tel:{" "}
+              <span id="thongtin__tel">{dataUser.phoneNumber}</span>
               <br />
-              Địa chỉ/Address: <span id="thongtin__address"></span>
+              Địa chỉ/Address:{" "}
+              <span id="thongtin__address">{dataUser.address}</span>
               <br />
               <br />
               Đã được tiêm vắc xin phòng bệnh COVID-19/Has been vaccine with

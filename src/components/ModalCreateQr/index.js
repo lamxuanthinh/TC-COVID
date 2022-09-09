@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useState, useRef } from "react";
 import isEmpty from "validator/lib/isEmpty";
-import signUpApi from "../../api/signUpApi";
-import { useNavigate } from "react-router-dom";
-import Loader from "../Loader";
+import createQrCodeApi from "../../api/createQrCodeApi";
 
 import {
   ModalContainer,
@@ -18,8 +16,13 @@ import {
   ModalContent,
 } from "./ModalElements";
 
-const Modal = ({ dataSubmit, openModal, CloseModal, responsePhoneCode }) => {
-  const navigate = useNavigate();
+const ModalCreateQr = ({
+  openModal,
+  closeModal,
+  responsePhoneCode,
+  dataSubmit,
+}) => {
+  const [imageScanner, setImageScanner] = useState("");
   const [phoneCode01, setPhoneCode01] = useState("");
   const [phoneCode02, setPhoneCode02] = useState("");
   const [phoneCode03, setPhoneCode03] = useState("");
@@ -85,27 +88,39 @@ const Modal = ({ dataSubmit, openModal, CloseModal, responsePhoneCode }) => {
     setPhoneCode06(e.target.value);
   };
 
-  // send qr code
+  // Api Qr Code
   const handleSendSigUpData = () => {
+    console.log(dataSubmit);
+
+    const postDataQrCode = async () => {
+      try {
+        const LinkImage = await createQrCodeApi.postDataQrCode({
+          logo: "https://lamxuanthinh.github.io/tc-covid/Home/assets/img/logo.png",
+          colorDark: "#19bc9c",
+          text: dataSubmit,
+        });
+        console.log("image is 1", LinkImage.data.url);
+        setImageScanner(LinkImage.data.url);
+      } catch (error) {
+        console.log("Failed to send data QR code ", error);
+      }
+    };
+    postDataQrCode();
+
     if (responsePhoneCode == numberPhoneCode) {
-      const postSignupData = async () => {
-        try {
-          const responseData = await signUpApi.postSignupData(dataSubmit);
-          console.log(responseData);
-        } catch (error) {
-          console.log("Failed to post data signup : ", error);
-        }
-      };
-      postSignupData();
+      console.log("done");
     }
-    navigate("/signin");
   };
 
   return (
     <>
-      <ModalContainer openModal={openModal}>
+      <ModalContainer openModal={openModal} onClick={closeModal}>
+        <div>12232</div>
+        <div>12232</div>
+        <div>12232</div>
+        <div>12232</div>
         <ModalWrapper onClick={(e) => e.stopPropagation()}>
-          <Close onClick={CloseModal}></Close>
+          <Close onClick={closeModal}></Close>
           <ModalTitle>Xác thực số điện thoại</ModalTitle>
           <ModalContent>
             Mã xác thực được gửi đến số điện thoại 0352786331
@@ -122,7 +137,7 @@ const Modal = ({ dataSubmit, openModal, CloseModal, responsePhoneCode }) => {
             <ModalInput ref={ref06} onChange={handlePhoneCode06}></ModalInput>
           </ModalInputWrapper>
           <BtnWrapper>
-            <BtnClose onClick={CloseModal}>Thoát</BtnClose>
+            <BtnClose onClick={closeModal}>Thoát</BtnClose>
             <BtnNext onClick={handleSendSigUpData}>Xác Nhận</BtnNext>
           </BtnWrapper>
         </ModalWrapper>
@@ -131,4 +146,4 @@ const Modal = ({ dataSubmit, openModal, CloseModal, responsePhoneCode }) => {
   );
 };
 
-export default Modal;
+export default ModalCreateQr;
