@@ -52,7 +52,7 @@ export const TextWrapper = styled.div`
 `;
 
 export const TopLine = styled.p`
-  color: #01bf71;
+  color: #19bc9c;
   font-size: 16px;
   line-height: 16px;
   font-weight: 700;
@@ -91,14 +91,14 @@ export const ImgWrap = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 100%;
+  width: 80%;
   margin: 0 0 10px 0;
   padding-right: 0;
 `;
 
 export const BtnLink = styled(LinkR)`
   border-radius: 50px;
-  background-color: #01bf71;
+  background-color: #19bc9c;
   white-space: nowrap;
   padding: 10px 22px;
   color: #010606;

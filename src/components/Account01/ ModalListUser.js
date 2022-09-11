@@ -12,43 +12,22 @@ const ModalListUser = () => {
       <WrapperList>
         <ItemList>
           <div>
-            <img src={require("../../images/avata01.png")} />
+            <img src={require("../../images/images.jpeg")} />
             <p>Lâm Xuân Thịnh</p>
           </div>
           <i className="fa-solid fa-ellipsis"></i>
         </ItemList>
         <ItemList>
           <div>
-            <img src={require("../../images/avata01.png")} />
+            <img src={require("../../images/images.jpeg")} />
             <p>Hoàng Thế Luân</p>
           </div>
           <i className="fa-solid fa-ellipsis"></i>
         </ItemList>
         <ItemList>
           <div>
-            <img src={require("../../images/avata01.png")} />
-            <p>Nguyễn Hoàng Việt</p>
-          </div>
-          <i className="fa-solid fa-ellipsis"></i>
-        </ItemList>
-        <ItemList>
-          <div>
-            <img src={require("../../images/avata01.png")} />
+            <img src={require("../../images/images.jpeg")} />
             <p>Ngô Hùng Sở</p>
-          </div>
-          <i className="fa-solid fa-ellipsis"></i>
-        </ItemList>
-        <ItemList>
-          <div>
-            <img src={require("../../images/avata01.png")} />
-            <p>Nguyễn Hoàng Việt</p>
-          </div>
-          <i className="fa-solid fa-ellipsis"></i>
-        </ItemList>
-        <ItemList>
-          <div>
-            <img src={require("../../images/avata01.png")} />
-            <p>Nguyễn Hoàng Việt</p>
           </div>
           <i className="fa-solid fa-ellipsis"></i>
         </ItemList>

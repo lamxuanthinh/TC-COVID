@@ -79,7 +79,7 @@ display: flex;
   font-size: 1rem;
   white-space: nowrap;
   border: none;
-  background-color: #01bf71;
+  background-color: #19bc9c;
   cursor: pointer;
   transition: all 0.2 ease-in-out;
   &:hover {

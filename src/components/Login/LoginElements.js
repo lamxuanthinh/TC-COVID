@@ -3,7 +3,7 @@ import { Link as LinkR } from "react-router-dom";
 
 export const LoginContainer = styled.div`
   display: flex;
-  background-color: #01bf71;
+  background-color: #19bc9c;
   height: 100vh;
 `;
 
@@ -96,7 +96,7 @@ export const BtnLink = styled.button`
   width: 100%;
   border-radius: 5px;
   transition: all 0.5s ease-in-out;
-  background-color: #01bf71;
+  background-color: #19bc9c;
 
   &:hover {
     transition: all 0.5s ease-in-out;
@@ -117,7 +117,7 @@ export const RememerPassword = styled.div`
 export const LoginCheckBox = styled.input`
   padding: 15px 5px;
 
-  accent-color: #01bf71;
+  accent-color: #19bc9c;
 `;
 export const RememerContent = styled.div`
   padding: 0 5px;
@@ -138,5 +138,5 @@ export const LogintoSignUpP = styled.div``;
 export const LogintoSignUpLink = styled(LinkR)`
   text-decoration: none;
   cursor: pointer;
-  color: #01bf71;
+  color: #19bc9c;
 `;

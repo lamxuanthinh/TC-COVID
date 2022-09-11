@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { CgClose } from "react-icons/cg";
 
 export const ModalContainer = styled.div`
-  display: ${({openModal }) => (openModal ? 'felx': 'none')};
+  display: ${({ openModal }) => (openModal ? "felx" : "none")};
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -12,10 +12,9 @@ export const ModalContainer = styled.div`
   bottom: 0;
   height: 100vh;
   background-color: #19bc9c;
-  z-index: 999;
-  
-
+  z-index: 100;
 `;
+
 export const ModalWrapper = styled.div`
   width: 500px;
   display: flex;

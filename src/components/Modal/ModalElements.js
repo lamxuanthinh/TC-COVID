@@ -11,7 +11,7 @@ export const ModalContainer = styled.div`
   right: 0;
   bottom: 0;
   height: 100vh;
-  background-color: #01bf71;
+  background-color: #19bc9c;
 `;
 export const ModalWrapper = styled.div`
   width: 500px;
@@ -86,7 +86,7 @@ export const BtnWrapper = styled.div`
 
 export const BtnNext = styled.button`
   border-radius: 6px;
-  background-color: #01bf71;
+  background-color: #19bc9c;
   white-space: nowrap;
   padding: 10px 22px;
   color: #010606;
@@ -106,7 +106,7 @@ export const BtnNext = styled.button`
 
 export const BtnClose = styled.button`
   border-radius: 6px;
-  background-color: #01bf71;
+  background-color: #19bc9c;
   margin-right: 20px;
   white-space: nowrap;
   padding: 10px 37px;

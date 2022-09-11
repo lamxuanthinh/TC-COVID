@@ -6,7 +6,7 @@ export const SignUpContainer = styled.div`
   /* display: flex; */
   justify-content: center;
   height: 100vh;
-  background-color: #01bf71;
+  background-color: #19bc9c;
 `;
 
 export const WrapperHidden = styled.div`
@@ -35,24 +35,24 @@ export const ProcessWrapper = styled.div`
   justify-content: space-evenly;
 `;
 export const ProcessItem1 = styled.div`
-  color: ${(props) => (props.colorStep ? "#01bf71" : "#000")};
+  color: ${(props) => (props.colorStep ? "#19bc9c" : "#000")};
   transition: all 0.3s ease;
 `;
 export const ProcessItem2 = styled.div`
   transition: all 0.3s ease;
-  color: ${(props) => (props.colorStep ? "#01bf71" : "#000")};
+  color: ${(props) => (props.colorStep ? "#19bc9c" : "#000")};
 `;
 export const ProcessItem3 = styled.div`
   transition: all 0.3s ease;
-  color: ${(props) => (props.colorStep ? "#01bf71" : "#000")};
+  color: ${(props) => (props.colorStep ? "#19bc9c" : "#000")};
 `;
 export const ProcessItem4 = styled.div`
   transition: all 0.3s ease;
-  color: ${(props) => (props.colorStep ? "#01bf71" : "#000")};
+  color: ${(props) => (props.colorStep ? "#19bc9c" : "#000")};
 `;
 export const ProcessItem5 = styled.div`
   transition: all 0.3s ease;
-  color: ${(props) => (props.colorStep ? "#01bf71" : "#000")};
+  color: ${(props) => (props.colorStep ? "#19bc9c" : "#000")};
 `;
 export const ProcessTitle = styled.div`
   padding: 15px 0;
@@ -181,7 +181,7 @@ export const BtnLink = styled.button`
   font-size: 18px;
   cursor: pointer;
   border-radius: 3px;
-  background-color: #01bf71;
+  background-color: #19bc9c;
   text-transform: uppercase;
   font-weight: 500;
   transition: 0.5s ease;

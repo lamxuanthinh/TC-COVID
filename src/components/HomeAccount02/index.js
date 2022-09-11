@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import ModalGlobal from "../ModalGlobal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +23,10 @@ import {
 import createRoom from "../../api/createRoom";
 
 const HomeAccount01 = () => {
+  const ref = useRef("");
+  useEffect(() => {
+    ref.current.focus();
+  });
   const name = sessionStorage.getItem("name");
   const age = sessionStorage.getItem("age");
   const role = sessionStorage.getItem("role");
@@ -48,15 +52,15 @@ const HomeAccount01 = () => {
           RoomID: idRoom,
           IdCard: cccd,
         });
-        console.log("check data", response);
+        console.log("create room  1 2", response);
 
         if (role === "Y Tá Kiểm Tra Sức Khoẻ") {
           sessionStorage.setItem("RoomID01", idRoom);
-          navigate("/01");
+          navigate("/010939474");
           setShowLoading(false);
         } else {
           sessionStorage.setItem("RoomID02", idRoom);
-          navigate("/02");
+          navigate("/023235246");
           setShowLoading(false);
         }
       } catch (error) {
@@ -107,22 +111,22 @@ const HomeAccount01 = () => {
 
         <HomeAccountBody>
           <HomeAccountImgWrapper>
-            <img src={require("../../images/test2.png")} />
+            <img src={require("../../images/room.png")} />
           </HomeAccountImgWrapper>
           <HomeAccountContentWrapper>
-            <h1>Tài Khoản Bác Sĩ Tiêm Chủng</h1>
+            <h1>Xác Thực Tiêm Chủng</h1>
             <p>
-              Tạo phòng để thực hiện tiêm chủng , chỉ gửi mã phòng cho những
-              người trong hệ thống tiêm chủng . Mọi hành vi sai lệch phải chịu
-              trách nhiệm trước pháp luật.
+              Tham gia phòng để thực hiện quá trình tiêm chủng . Mọi hành vi sai
+              lệch phải chịu trách nhiệm trước pháp luật.
             </p>
             <RoomWrapper>
               <RomBtn onClick={handleCheckIDRoom}>
-                <i class="fa-regular fa-circle-plus"></i>
+                <i className="fa-regular fa-circle-plus"></i>
                 Vào Phòng
               </RomBtn>
               <InputWrapper>
                 <input
+                  ref={ref}
                   onChange={(e) => {
                     setIdRoom(e.target.value);
                   }}

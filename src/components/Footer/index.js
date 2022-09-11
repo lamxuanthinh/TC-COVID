@@ -18,7 +18,6 @@ import {
 } from "./FooterElements";
 
 const Footer = () => {
-  
   const backHome = () => {
     scroll.scrollToTop();
   };
@@ -66,10 +65,18 @@ const Footer = () => {
             <FooterLinksWrapper>
               <FooterLinkItems>
                 <FooterLinkTitle>Liên hệ chúng tôi</FooterLinkTitle>
-                <FooterLink to="/">Liên lạc</FooterLink>
-                <FooterLink to="/">Hỗ trợ</FooterLink>
-                <FooterLink to="/">Địa chỉ</FooterLink>
-                <FooterLink to="/">Tài trợ</FooterLink>
+                <FooterLink to="https://tc-covid.github.io/Contact/">
+                  Liên lạc
+                </FooterLink>
+                <FooterLink to="https://tc-covid.github.io/Contact/">
+                  Hỗ trợ
+                </FooterLink>
+                <FooterLink to="https://tc-covid.github.io/Contact/">
+                  Địa chỉ
+                </FooterLink>
+                <FooterLink to="https://tc-covid.github.io/Contact/">
+                  Tài trợ
+                </FooterLink>
               </FooterLinkItems>
               <FooterLinkItems>
                 <FooterLinkTitle>Mạng xã hội</FooterLinkTitle>
@@ -106,7 +113,8 @@ const Footer = () => {
                 TC-Covid
               </SocialLogo>
               <WebsiteRights>
-                TC-Covid © {new Date().getFullYear()} Bản quyền thuộc về nhóm NEVER GIVE UP
+                TC-Covid © {new Date().getFullYear()} Bản quyền thuộc về nhóm
+                NEVER GIVE UP
               </WebsiteRights>
               <SocialIcon>
                 <SocialIconLink

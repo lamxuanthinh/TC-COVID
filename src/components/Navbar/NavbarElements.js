@@ -82,7 +82,7 @@ export const NavLinks = styled(LinkS)`
 
   &.active {
     transition: all ease-in-out;
-    border-bottom: 3px solid #01bf71;
+    border-bottom: 3px solid #19bc9c;
   }
 `;
 
@@ -96,7 +96,7 @@ export const NavBtn = styled.nav`
 
 export const NavBtnLink = styled(LinkR)`
   border-radius: 50px;
-  background-color: #01bf71;
+  background-color: #19bc9c;
   white-space: nowrap;
   padding: 10px 22px;
   color: #010606;

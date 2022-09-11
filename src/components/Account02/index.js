@@ -49,21 +49,22 @@ const Account02 = () => {
 
   const RoomID02 = sessionStorage.getItem("RoomID02");
   console.log(RoomID02);
-  // useEffect(() => {
-  const getUsers02 = async () => {
-    try {
-      const response = await controllerRoom.getUser02({
-        RoomID: RoomID02,
-      });
-      setDataUser(response);
-      console.log(response);
-      console.log("check data Account 02 :", response.data);
-    } catch (error) {
-      console.log("Failed to fetch data :", error);
-    }
-  };
-  getUsers02();
-  // }, [a]);
+
+  useEffect(() => {
+    const getUsers02 = async () => {
+      try {
+        const response = await controllerRoom.getUser02({
+          RoomId: RoomID02,
+        });
+        setDataUser(response);
+        console.log("check data Account 02 :", response);
+        console.log("check data Account 02 :", response.data);
+      } catch (error) {
+        console.log("Failed to fetch data :", error);
+      }
+    };
+    getUsers02();
+  }, []);
 
   let tagDataModal;
   if (buttonHandle === "complete") {
@@ -138,24 +139,22 @@ const Account02 = () => {
           <ListInformations>
             <InformationItem>
               <IconName />
-              <DataInformations>Tên:&nbsp;{dataUser.name}</DataInformations>
+              <DataInformations>Tên:&nbsp;Lâm Xuân Thịnh</DataInformations>
             </InformationItem>
 
             <InformationItem>
               <IconGender />
-              <DataInformations>
-                Giới Tính:&nbsp;{dataUser.gender}
-              </DataInformations>
+              <DataInformations>Giới Tính:&nbsp;Nam</DataInformations>
             </InformationItem>
             <InformationItem>
               <IconLimitedCard />
-              <DataInformations>CCCD:&nbsp;{dataUser.IdCard}</DataInformations>
+              <DataInformations>CCCD:0989833847</DataInformations>
             </InformationItem>
 
             <InformationItem>
               <IconPhone />
               <DataInformations>
-                Số Điện Thoại:&nbsp;{dataUser.phoneNumber}
+                Số Điện Thoại:&nbsp;0352786331
               </DataInformations>
             </InformationItem>
           </ListInformations>

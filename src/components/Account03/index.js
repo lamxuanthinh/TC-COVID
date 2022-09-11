@@ -51,7 +51,7 @@ const Account03 = () => {
   const getUsers03 = async () => {
     try {
       const response = await controllerRoom.getUser03({
-        RoomID: RoomID03,
+        RoomId: RoomID03,
       });
       setDataUser(response);
       console.log(response);
@@ -132,27 +132,23 @@ const Account03 = () => {
             <ListInformations>
               <InformationItem>
                 <IconName />
-                <DataInformations>Tên:&nbsp;{dataUser.name}</DataInformations>
+                <DataInformations>Tên:&nbsp;Lâm Xuân Thịnh</DataInformations>
               </InformationItem>
 
               <InformationItem>
                 <IconGender />
-                <DataInformations>
-                  Giới Tính:&nbsp;{dataUser.gender}
-                </DataInformations>
+                <DataInformations>Giới Tính:&nbsp;Nam</DataInformations>
               </InformationItem>
 
               <InformationItem>
                 <IconLimitedCard />
-                <DataInformations>
-                  CCCD:&nbsp;{dataUser.IdCard}
-                </DataInformations>
+                <DataInformations>CCCD:&nbsp;0989833847</DataInformations>
               </InformationItem>
 
               <InformationItem>
                 <IconPhone />
                 <DataInformations>
-                  Số Điện Thoại:&nbsp;{dataUser.phoneNumber}
+                  Số Điện Thoại:&nbsp;0352786331
                 </DataInformations>
               </InformationItem>
             </ListInformations>

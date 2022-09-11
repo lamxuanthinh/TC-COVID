@@ -53,7 +53,7 @@ export const FooterLink = styled.a `
     margin-bottom: 0.5rem;
     font-size: 14px;
     &:hover {
-        color: #01bf71;
+        color: #19bc9c;
         transition: 0.3 a ease-in-out;
     }
 `

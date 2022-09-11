@@ -524,7 +524,9 @@ const SignUp = () => {
                       <option value="Bác Sĩ Kiểm Tra Sức Khoẻ">
                         Bác Sĩ Kiểm Tra Sức Khoẻ
                       </option>
-                      <option value="bacsitiemvacxin">Bác sĩ tiêm chủng</option>
+                      <option value="Bác sĩ tiêm chủng">
+                        Bác sĩ tiêm chủng
+                      </option>
                     </select>
                     <span>&nbsp;{validationMsg.role}</span>
                   </SignUpLable>

@@ -4,6 +4,7 @@ import Loader from "./components/Loader";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import VaccinationRegister from "./components/VaccinationRegister";
+import DownloadImageScanner from "./components/VaccinationRegister/DownloadImageScanner";
 import Home from "./pages";
 import Security from "./pages/Security";
 
@@ -21,8 +22,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/1" element={<Loader />} />
         <Route path="/vaccinationRegister" element={<VaccinationRegister />} />
-        <Route path="*" element={<Security />} />
-        
+        <Route path="/downloadImageScanner" element={<DownloadImageScanner/>} />
+        <Route path="*" element={<Security />} />    
       </Routes>
     </div>
   );

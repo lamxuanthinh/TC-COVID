@@ -8,9 +8,6 @@ const ScannerData = ({ dataScanner }) => {
 
   const handlePostDataAccount01 = () => {
     const postDataAccount01 = async () => {
-      console.log(formatData);
-      console.log(RoomID01);
-      console.log(formatData[0]);
       try {
         const response = await controllerRoom.postDataAccount01({
           RoomId: RoomID01,
@@ -22,7 +19,7 @@ const ScannerData = ({ dataScanner }) => {
           address: formatData[5],
         });
 
-        console.log("check data", response);
+        console.log("check data send to form tow", response);
       } catch (error) {
         console.log("Failed to fetch data :", error);
       }

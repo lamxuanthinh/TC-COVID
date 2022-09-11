@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import isEmpty from "validator/lib/isEmpty";
 import createQrCodeApi from "../../api/createQrCodeApi";
 
@@ -14,6 +15,7 @@ import {
   BtnWrapper,
   ModalTitle,
   ModalContent,
+  ModalContainer02,
 } from "./ModalElements";
 
 const ModalCreateQr = ({
@@ -22,6 +24,7 @@ const ModalCreateQr = ({
   responsePhoneCode,
   dataSubmit,
 }) => {
+  const navigate = useNavigate();
   const [imageScanner, setImageScanner] = useState("");
   const [phoneCode01, setPhoneCode01] = useState("");
   const [phoneCode02, setPhoneCode02] = useState("");
@@ -43,6 +46,20 @@ const ModalCreateQr = ({
   const ref04 = useRef("");
   const ref05 = useRef("");
   const ref06 = useRef("");
+
+  // count down
+  const [count, setCount] = useState(60);
+  useEffect(() => {
+    if (count == 0) {
+      return;
+    }
+    let timer = setInterval(() => {
+      setCount(count - 1);
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [count]);
 
   // next focus pointer
   useEffect(() => {
@@ -91,7 +108,6 @@ const ModalCreateQr = ({
   // Api Qr Code
   const handleSendSigUpData = () => {
     console.log(dataSubmit);
-
     const postDataQrCode = async () => {
       try {
         const LinkImage = await createQrCodeApi.postDataQrCode({
@@ -100,13 +116,15 @@ const ModalCreateQr = ({
           text: dataSubmit,
         });
         console.log("image is 1", LinkImage.data.url);
+        sessionStorage.setItem("imageScanner", LinkImage.data.url);
         setImageScanner(LinkImage.data.url);
       } catch (error) {
         console.log("Failed to send data QR code ", error);
       }
     };
     postDataQrCode();
-
+    // setShowLoading(false);
+    navigate("/downloadImageScanner");
     if (responsePhoneCode == numberPhoneCode) {
       console.log("done");
     }
@@ -115,10 +133,6 @@ const ModalCreateQr = ({
   return (
     <>
       <ModalContainer openModal={openModal} onClick={closeModal}>
-        <div>12232</div>
-        <div>12232</div>
-        <div>12232</div>
-        <div>12232</div>
         <ModalWrapper onClick={(e) => e.stopPropagation()}>
           <Close onClick={closeModal}></Close>
           <ModalTitle>Xác thực số điện thoại</ModalTitle>
@@ -126,7 +140,11 @@ const ModalCreateQr = ({
             Mã xác thực được gửi đến số điện thoại 0352786331
           </ModalContent>
           <ModalContent>
-            Mã xác thực hết hiệu lực sau thời gian 100s
+            {count === 0 ? (
+              <>Mã xác thực hết hiệu lực </>
+            ) : (
+              <>Thời gian nhập mảng xác thực là : {count} s</>
+            )}
           </ModalContent>
           <ModalInputWrapper>
             <ModalInput ref={ref01} onChange={handlePhoneCode01}></ModalInput>

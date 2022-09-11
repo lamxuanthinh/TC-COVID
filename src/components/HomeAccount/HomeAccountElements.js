@@ -132,7 +132,7 @@ export const RoomWrapper = styled.div`
     font-size: 1.2rem;
     border-radius: 3px;
     &:focus {
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+      box-shadow: 0.5px 0.5px 10px 2px #19bc9c;
     }
   }
   @media screen and (max-width: 991.89px) {
@@ -216,8 +216,8 @@ export const ModalContentProfile = styled.div`
       img {
         display: inline-block;
         margin: 0 auto;
-        width: 150px;
-        height: 150px;
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
       }
     }

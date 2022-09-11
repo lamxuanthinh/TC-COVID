@@ -41,6 +41,20 @@ const Modal = ({ dataSubmit, openModal, CloseModal, responsePhoneCode }) => {
   const ref05 = useRef("");
   const ref06 = useRef("");
 
+  // count down
+  const [count, setCount] = useState(60);
+  useEffect(() => {
+    if (count == 0) {
+      return;
+    }
+    let timer = setInterval(() => {
+      setCount(count - 1);
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [count]);
+
   // next focus pointer
   useEffect(() => {
     ref01.current.focus();
@@ -111,7 +125,11 @@ const Modal = ({ dataSubmit, openModal, CloseModal, responsePhoneCode }) => {
             Mã xác thực được gửi đến số điện thoại 0352786331
           </ModalContent>
           <ModalContent>
-            Mã xác thực hết hiệu lực sau thời gian 100s
+            {count === 0 ? (
+              <>Mã xác thực hết hiệu lực </>
+            ) : (
+              <>Thời gian nhập mảng xác thực là : {count} s</>
+            )}
           </ModalContent>
           <ModalInputWrapper>
             <ModalInput ref={ref01} onChange={handlePhoneCode01}></ModalInput>

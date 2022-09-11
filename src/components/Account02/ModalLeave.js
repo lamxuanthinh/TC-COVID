@@ -15,8 +15,8 @@ const ModalLeave = () => {
           RoomID: RoomID02,
           IdCard: cccd,
         });
-        console.log("check data", response);
-        if (response === true) {
+        console.log("check data", response.data);
+        if (response.data === true) {
           navigate("/homeAccount=001122");
         }
       } catch (error) {

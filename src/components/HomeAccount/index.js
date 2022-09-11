@@ -50,8 +50,9 @@ const HomeAccount = () => {
           IdCard: cccd,
           RoomID: RoomID03,
         });
+        console.log("create room 3", response);
         setShowLoading(false);
-        navigate("/03");
+        navigate("/033445323");
       } catch (error) {
         console.log("Failed to fetch data :", error);
       }
@@ -100,13 +101,12 @@ const HomeAccount = () => {
 
         <HomeAccountBody>
           <HomeAccountImgWrapper>
-            <img src={require("../../images/test2.png")} />
+            <img src={require("../../images/room.png")} />
           </HomeAccountImgWrapper>
           <HomeAccountContentWrapper>
             <h1>Tài Khoản Bác Sĩ Tiêm Chủng</h1>
             <p>
-              Tạo phòng để thực hiện tiêm chủng , chỉ gửi mã phòng cho những
-              người trong hệ thống tiêm chủng . Mọi hành vi sai lệch phải chịu
+              Tạo phòng để thực hiện tiêm chủng. Mọi hành vi sai lệch phải chịu
               trách nhiệm trước pháp luật.
             </p>
             <RoomWrapper>

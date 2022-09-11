@@ -16,9 +16,9 @@ const Security = () => {
     <Routes>
       <Route path="/homeAccount=0033" element={<HomeAccount />} />
       <Route path="/homeAccount=001122" element={<HomeAccount01 />} />
-      <Route path="/01" element={<Account01 />} />
-      <Route path="/02" element={<Account02 />} />
-      <Route path="/03" element={<Account03 />} />
+      <Route path="/010939474" element={<Account01 />} />
+      <Route path="/023235246" element={<Account02 />} />
+      <Route path="/033445323" element={<Account03 />} />
     </Routes>
   );
 };

@@ -8,6 +8,8 @@ const ModalLeave = () => {
   const cccd = sessionStorage.getItem("cccd");
   const RoomID01 = sessionStorage.getItem("RoomID01");
 
+  console.log(cccd);
+  console.log(RoomID01);
   const handleLeaveRoom = () => {
     const leaveRoom = async () => {
       try {
@@ -15,8 +17,8 @@ const ModalLeave = () => {
           RoomID: RoomID01,
           IdCard: cccd,
         });
-        console.log("check data", response);
-        if (response === true) {
+        console.log("check data leave :", response.data);
+        if (response.data === true) {
           navigate("/homeAccount=001122");
         }
       } catch (error) {
