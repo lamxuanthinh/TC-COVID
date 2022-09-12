@@ -2,7 +2,7 @@ import axios from "axios";
 import queryString from "query-string";
 
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "https://tc-covid-json-server.herokuapp.com/doctors",
   headers: {
     "content-type": "application/json",
   },
