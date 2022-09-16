@@ -32,7 +32,7 @@ import {
 
 const SignUp = () => {
   const colorStep = true;
-  const messeage = {};
+  const message = {};
 
   const [step, setStep] = useState(0);
   const [check, setCheck] = useState(0);
@@ -50,7 +50,7 @@ const SignUp = () => {
   const [role, setRole] = useState("");
   // slider 5
   const [password, setPassword] = useState("");
-  const [confrimPassword, setConfrimPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [validationMsg, setValidationMsg] = useState({});
 
@@ -58,6 +58,7 @@ const SignUp = () => {
   const [openModal, setOpenModal] = useState(false);
   // phone code
   const [phoneCode, setPhoneCode] = useState(1);
+
   const dataSubmit = {
     IdCard: cccd,
     phoneNumber: phoneNumber,
@@ -69,12 +70,19 @@ const SignUp = () => {
     password: password,
     image: certified,
   };
+  // regex
+  const regexCodePeople = /^0[0-9]{11}$/g;
+  const regexPhoneNumber = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+  const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 
   //  start Slider 01
   const handleCccd = (e) => {
-    setCccd(e.target.value);
-    if (isEmpty(e.target.value)) {
-      const cccdMsg = "Mã căng cước không hợp lệ";
+    setCccd(e.target.value.trim());
+    if (
+      isEmpty(e.target.value.trim()) ||
+      !regexCodePeople.test(e.target.value.trim())
+    ) {
+      const cccdMsg = "Định dạng 08/09 hoặc 12 số";
       setValidationMsg({ ...validationMsg, cccd: cccdMsg });
     } else {
       delete validationMsg.cccd;
@@ -82,8 +90,8 @@ const SignUp = () => {
     }
   };
   const handleFullName = (e) => {
-    setFullName(e.target.value);
-    if (isEmpty(e.target.value)) {
+    setFullName(e.target.value.trim());
+    if (isEmpty(e.target.value.trim())) {
       const fullNameMsg = "Họ và tên không được bỏ trống";
       setValidationMsg({ ...validationMsg, fullName: fullNameMsg });
     } else {
@@ -92,23 +100,26 @@ const SignUp = () => {
     }
   };
   const validateAll01 = () => {
-    if (isEmpty(cccd)) {
-      messeage.cccd = "Mã căng cước không hợp lệ";
+    if (isEmpty(cccd) || !regexCodePeople.test(cccd)) {
+      message.cccd = "Định dạng 08/09 hoặc 12 số";
     }
     if (isEmpty(fullName)) {
-      messeage.fullName = "Họ và tên không được bỏ trống";
+      message.fullName = "Họ và tên không được bỏ trống";
     }
 
-    setValidationMsg(messeage);
-    if (Object.keys(messeage).length > 0) return false;
+    setValidationMsg(message);
+    if (Object.keys(message).length > 0) return false;
     return true;
   };
   // end Slider 10
 
   //  start Slider 02
   const handelPhoneNumber = (e) => {
-    setPhoneNumber(e.target.value);
-    if (isEmpty(e.target.value)) {
+    setPhoneNumber(e.target.value.trim());
+    if (
+      isEmpty(e.target.value) ||
+      !regexPhoneNumber.test(e.target.value.trim())
+    ) {
       const phoneNumberMsg = "Số điện thoại không hợp lệ";
       setValidationMsg({ ...validationMsg, phoneNumber: phoneNumberMsg });
     } else {
@@ -117,25 +128,25 @@ const SignUp = () => {
     }
   };
   const handleAddress = (e) => {
-    setAddress(e.target.value);
-    if (isEmpty(e.target.value)) {
-      const adddressMsg = "Địa chỉ không được bỏ trống";
-      setValidationMsg({ ...validationMsg, address: adddressMsg });
+    setAddress(e.target.value.trim());
+    if (isEmpty(e.target.value.trim())) {
+      const addressMsg = "Địa chỉ không được bỏ trống";
+      setValidationMsg({ ...validationMsg, address: addressMsg });
     } else {
       delete validationMsg.address;
       setValidationMsg(validationMsg);
     }
   };
   const validateAll02 = () => {
-    if (isEmpty(phoneNumber)) {
-      messeage.phoneNumber = "Số điện thoại không hợp lệ";
+    if (isEmpty(phoneNumber) || !regexPhoneNumber.test(phoneNumber)) {
+      message.phoneNumber = "Số điện thoại không hợp lệ";
     }
     if (isEmpty(address)) {
-      messeage.address = "Địa chỉ không được bỏ trống";
+      message.address = "Địa chỉ không được bỏ trống";
     }
 
-    setValidationMsg(messeage);
-    if (Object.keys(messeage).length > 0) return false;
+    setValidationMsg(message);
+    if (Object.keys(message).length > 0) return false;
     return true;
   };
   // end Slider 02
@@ -163,14 +174,14 @@ const SignUp = () => {
   };
   const validateAll03 = () => {
     if (isEmpty(age)) {
-      messeage.age = "Số điện thoại không hợp lệ";
+      message.age = "Số điện thoại không hợp lệ";
     }
     if (isEmpty(gender)) {
-      messeage.gender = "Địa chỉ không được bỏ trống";
+      message.gender = "Địa chỉ không được bỏ trống";
     }
 
-    setValidationMsg(messeage);
-    if (Object.keys(messeage).length > 0) return false;
+    setValidationMsg(message);
+    if (Object.keys(message).length > 0) return false;
     return true;
   };
   // end Slider 03
@@ -198,51 +209,57 @@ const SignUp = () => {
   };
   const validateAll04 = () => {
     if (isEmpty(certified)) {
-      messeage.certified = "Vui lòng nhập ảnh hợp lệ";
+      message.certified = "Vui lòng nhập ảnh hợp lệ";
     }
     if (isEmpty(role)) {
-      messeage.role = "Vai trò không được bỏ trống";
+      message.role = "Vai trò không được bỏ trống";
     }
 
-    setValidationMsg(messeage);
-    if (Object.keys(messeage).length > 0) return false;
+    setValidationMsg(message);
+    if (Object.keys(message).length > 0) return false;
     return true;
   };
   // end Slider 04
 
   //  start Slider 05
   const handlePassword = (e) => {
-    setPassword(e.target.value);
-    if (isEmpty(e.target.value)) {
-      const passwordMsg = "Mật khẩu phải đủ tám kí tự";
+    setPassword(e.target.value.trim());
+    let regexPs = regexPassword.test(e.target.value.trim());
+    if (isEmpty(e.target.value.trim()) || !regexPs) {
+      const passwordMsg =
+        "Mật khẩu trên 8 kí tự , phải có một số và một chữ hoa";
       setValidationMsg({ ...validationMsg, password: passwordMsg });
     } else {
       delete validationMsg.password;
       setValidationMsg(validationMsg);
     }
   };
+
   const handleConfirmPassword = (e) => {
-    setConfrimPassword(e.target.value);
+    setConfirmPassword(e.target.value);
+
     if (isEmpty(e.target.value) || e.target.value !== password) {
-      const confrimPasswordMsg = "Mật khẩu xác thực không hợp lệ";
+      const confirmPasswordMsg =
+        "Mật khẩu trên 8 kí tự , phải có một số và một chữ hoa";
       setValidationMsg({
         ...validationMsg,
-        confrimPassword: confrimPasswordMsg,
+        confirmPassword: confirmPasswordMsg,
       });
     } else {
-      delete validationMsg.confrimPassword;
+      delete validationMsg.confirmPassword;
       setValidationMsg(validationMsg);
     }
   };
   const validateAll05 = () => {
-    if (isEmpty(password)) {
-      messeage.password = "Mật khẩu phải đủ tám kí tự";
+    if (isEmpty(password) || !regexPassword.test(password)) {
+      message.password =
+        "Mật khẩu trên 8 kí tự , phải có một số và một chữ hoa";
     }
-    if (isEmpty(confrimPassword) || confrimPassword !== password) {
-      messeage.confrimPassword = "Mật khẩu xác thực không hợp lệ";
+    if (isEmpty(confirmPassword) || confirmPassword !== password) {
+      message.confirmPassword = "Mật khẩu xác thực không hợp lệ";
     }
-    setValidationMsg(messeage);
-    if (Object.keys(messeage).length > 0) return false;
+    setValidationMsg(message);
+    if (Object.keys(message).length > 0) return false;
     return true;
   };
   // end Slider 05
@@ -552,7 +569,7 @@ const SignUp = () => {
                       onBlur={handleConfirmPassword}
                       type="password"
                     />
-                    <span>&nbsp;{validationMsg.confrimPassword}</span>
+                    <span>&nbsp;{validationMsg.confirmPassword}</span>
                   </SignUpLable>
                   <SignUpBtnWrapper>
                     <BtnLink onClick={backSlider}>Trở Lại</BtnLink>

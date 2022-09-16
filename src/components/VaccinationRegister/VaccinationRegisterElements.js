@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const ContainerVaccinationRegister = styled.div`
   background-color: #19bc9c;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+
   .containerRegister {
     position: relative;
     max-width: 1200px;
@@ -168,7 +168,10 @@ export const ContainerVaccinationRegister = styled.div`
       margin-bottom: 0px;
     }
     .containerRegister {
-      margin: 0 0;
+      margin: 10px 0;
     }
+  }
+  @media screen and (min-width: 740px) {
+    height: 100vh;
   }
 `;

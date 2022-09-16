@@ -29,7 +29,7 @@ const InfoSection = ({
   alt,
   btnBg,
   btnColor,
-  dataLink
+  dataLink,
 }) => {
   return (
     <>
@@ -42,7 +42,9 @@ const InfoSection = ({
                 <Heading lightText={lightText}>{headline}</Heading>
                 <SubTitle darkText={darkText}>{description}</SubTitle>
                 <BtnWrapper>
-                  <BtnLink btnBg={btnBg} btnColor={btnColor} to={dataLink}>{buttonLable}</BtnLink>
+                  <BtnLink $btnbg={btnBg} $btncolor={btnColor} to={dataLink}>
+                    {buttonLable}
+                  </BtnLink>
                 </BtnWrapper>
               </TextWrapper>
             </Column1>

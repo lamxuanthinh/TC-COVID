@@ -40,7 +40,7 @@ const HeroSection = () => {
             <BtnLink
               to="signup"
               smooth={true}
-              duration={true}
+              // duration={true}
               spy={true}
               offset={-80}
             >

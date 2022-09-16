@@ -107,11 +107,11 @@ export const BtnLink = styled(LinkR)`
   border: none;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2 ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   &:hover {
-    transition: all 0.2 ease-in-out;
-    background-color: ${({ btnBg }) => (btnBg ? "#fff" : "#010606")};
-    color: ${({ btnColor }) => (btnColor ? "#010606" : "#fff")};
+    transition: all 0.3s ease-in-out;
+    background-color: ${({ btnbg }) => (btnbg ? "#fff" : "#010606")};
+    color: ${({ btncolor }) => (btncolor ? "#010606" : "#fff")};
   }
 `;

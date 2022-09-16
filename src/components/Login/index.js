@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import isEmpty from "validator/lib/isEmpty";
-
+import LoginApi from "../../api/loginApi";
+import Loader from "../Loader";
 import {
   LoginContainer,
   LoginBtnWrapper,
@@ -25,9 +26,6 @@ import {
   LogintoSignUpP,
   LogintoSignUpLink,
 } from "./LoginElements";
-import LoginApi from "../../api/loginApi";
-import Loader from "../Loader";
-import { RiContactsBookLine } from "react-icons/ri";
 
 const Login = () => {
   const message = {};
@@ -37,11 +35,20 @@ const Login = () => {
   const [validationMsg, setValidationMsg] = useState({});
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
+  const regexCodePeople = /^0[0-9]{11}$/g;
+  // Chứa ít nhất 8 ký tự
+  // chứa ít nhất 1 số
+  //chứa ít nhất 1 ký tự viết thường (az)
+  //chứa ít nhất 1 ký tự viết hoa (AZ)
+  const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 
   const handleCCCD = (e) => {
-    setCccd(e.target.value);
-    if (isEmpty(e.target.value)) {
-      const cccdMsg = "Mã căn cước không hợp lệ";
+    setCccd(e.target.value.trim());
+    let regexCardId = regexCodePeople.test(e.target.value.trim());
+    console.log(regexCardId);
+
+    if (isEmpty(e.target.value.trim()) || !regexCardId) {
+      const cccdMsg = "Định dạng 08/09 hoặc 12 số";
       setValidationMsg({ ...validationMsg, cccd: cccdMsg });
     } else {
       delete validationMsg.cccd;
@@ -50,9 +57,11 @@ const Login = () => {
   };
 
   const handlePassword = (e) => {
-    setPassword(e.target.value);
-    if (isEmpty(e.target.value)) {
-      const passwordMsg = "Mật khẩu không hợp lệ";
+    setPassword(e.target.value.trim());
+    let regexPs = regexPassword.test(e.target.value.trim());
+    if (isEmpty(e.target.value.trim()) || !regexPs) {
+      const passwordMsg =
+        "Mật khẩu trên 8 kí tự , phải có một số và một chữ hoa";
       setValidationMsg({ ...validationMsg, password: passwordMsg });
     } else {
       delete validationMsg.password;
@@ -61,10 +70,10 @@ const Login = () => {
   };
 
   const validateAll = () => {
-    if (isEmpty(cccd)) {
+    if (isEmpty(cccd) || !regexCodePeople.test(cccd)) {
       message.cccd = "Mã căng cước không hợp lệ";
     }
-    if (isEmpty(password)) {
+    if (isEmpty(password) || !regexPassword.test(password)) {
       message.password = "Mật khẩu không hợp lệ";
     }
 
@@ -118,7 +127,7 @@ const Login = () => {
       <LoginContainer>
         <LoginWrapper>
           <LoginWraperImg>
-            <LoginImg src={require("../../images/login01.png")} />
+            <LoginImg src={require("../../images/login.png")} />
           </LoginWraperImg>
 
           <LoginFormWrapper>

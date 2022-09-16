@@ -29,10 +29,30 @@ const Footer = () => {
             <FooterLinksWrapper>
               <FooterLinkItems>
                 <FooterLinkTitle>Về chúng tôi</FooterLinkTitle>
-                <FooterLink to="/">Cam kết</FooterLink>
-                <FooterLink to="/">Điều khoản dịch vụ</FooterLink>
-                <FooterLink to="/">Chính sách bảo mật</FooterLink>
-                <FooterLink to="/">Nhà đầu tư</FooterLink>
+                <FooterLink
+                  href="https://tc-covid.github.io/Commit"
+                  target="_blank"
+                >
+                  Cam kết
+                </FooterLink>
+                <FooterLink
+                  href="https://tc-covid.github.io/Rules"
+                  target="_blank"
+                >
+                  Điều khoản dịch vụ
+                </FooterLink>
+                <FooterLink
+                  href="https://tc-covid.github.io/Security"
+                  target="_blank"
+                >
+                  Chính sách bảo mật
+                </FooterLink>
+                <FooterLink
+                  href="https://tc-covid.github.io/Sponsor"
+                  target="_blank"
+                >
+                  Nhà đầu tư
+                </FooterLink>
               </FooterLinkItems>
               <FooterLinkItems>
                 <FooterLinkTitle>Người sáng lập</FooterLinkTitle>
@@ -65,16 +85,28 @@ const Footer = () => {
             <FooterLinksWrapper>
               <FooterLinkItems>
                 <FooterLinkTitle>Liên hệ chúng tôi</FooterLinkTitle>
-                <FooterLink to="https://tc-covid.github.io/Contact/">
+                <FooterLink
+                  href="https://tc-covid.github.io/Contact/"
+                  target="_blank"
+                >
                   Liên lạc
                 </FooterLink>
-                <FooterLink to="https://tc-covid.github.io/Contact/">
+                <FooterLink
+                  href="https://tc-covid.github.io/Contact/"
+                  target="_blank"
+                >
                   Hỗ trợ
                 </FooterLink>
-                <FooterLink to="https://tc-covid.github.io/Contact/">
+                <FooterLink
+                  href="https://tc-covid.github.io/Contact/"
+                  target="_blank"
+                >
                   Địa chỉ
                 </FooterLink>
-                <FooterLink to="https://tc-covid.github.io/Contact/">
+                <FooterLink
+                  href="https://tc-covid.github.io/Contact/"
+                  target="_blank"
+                >
                   Tài trợ
                 </FooterLink>
               </FooterLinkItems>

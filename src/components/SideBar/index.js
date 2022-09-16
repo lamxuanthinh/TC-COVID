@@ -22,7 +22,7 @@ const SideBar = ({ isOpen, toggle }) => {
             <SidebarLink
               to="about"
               smooth={true}
-              duration={true}
+              // duration={true}
               spy={true}
               offset={-80}
               onClick={toggle}
@@ -32,7 +32,7 @@ const SideBar = ({ isOpen, toggle }) => {
             <SidebarLink
               to="discover"
               smooth={true}
-              duration={true}
+              // duration={true}
               spy={true}
               offset={-80}
               onClick={toggle}
@@ -42,7 +42,7 @@ const SideBar = ({ isOpen, toggle }) => {
             <SidebarLink
               to="services"
               smooth={true}
-              duration={true}
+              // duration={true}
               spy={true}
               offset={-80}
               onClick={toggle}
@@ -52,7 +52,7 @@ const SideBar = ({ isOpen, toggle }) => {
             <SidebarLink
               to="signup"
               smooth={true}
-              duration={true}
+              // duration={true}
               spy={true}
               offset={-80}
               onClick={toggle}

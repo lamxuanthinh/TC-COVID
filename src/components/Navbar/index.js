@@ -34,7 +34,7 @@ const NavBar = ({ toggle }) => {
               <NavLinks
                 to="about"
                 smooth={true}
-                duration={true}
+                // duration={true}
                 spy={true}
                 offset={-80}
               >
@@ -45,7 +45,7 @@ const NavBar = ({ toggle }) => {
               <NavLinks
                 to="discover"
                 smooth={true}
-                duration={true}
+                // duration={true}
                 spy={true}
                 offset={-80}
               >
@@ -56,7 +56,7 @@ const NavBar = ({ toggle }) => {
               <NavLinks
                 to="services"
                 smooth={true}
-                duration={true}
+                // duration={true}
                 spy={true}
                 offset={-80}
               >
@@ -67,7 +67,7 @@ const NavBar = ({ toggle }) => {
               <NavLinks
                 to="signup"
                 smooth={true}
-                duration={true}
+                // duration={true}
                 spy={true}
                 offset={-80}
               >
