@@ -1,3 +1,3 @@
 
-contact : https://lamxuanthinh.tk/
+Contact : https://lamxuanthinh.tk/
 Link project : https://tc-covid.web.app/
