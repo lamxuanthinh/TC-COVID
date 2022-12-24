@@ -5,9 +5,6 @@
 
     <source src="https://youtu.be/bSYHXpQEa78"
             type="video/webm">
-
-    <source src="https://youtu.be/bSYHXpQEa78"
-            type="video/mp4">
 </video>
 
 
