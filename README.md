@@ -2,7 +2,7 @@
 ![305616919_624133862479915_2094799908552785723_n](https://user-images.githubusercontent.com/94306642/209430180-85376faa-c33e-49f1-ae26-980c4974d9f8.JPG)
 
 <div>Video : https://youtu.be/bSYHXpQEa78</div>
-<div>Contact : https://lamxuanthinh.tk/</div>
+<div>Contacts : https://lamxuanthinh.tk/</div>
 <div>Link project : https://tc-covid.web.app/</div>
 
 
