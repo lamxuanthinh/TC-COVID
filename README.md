@@ -3,6 +3,8 @@
 
 <video src="https://youtu.be/bSYHXpQEa78"></video>
 
+[<img src="https://img.youtube.com/vi/bSYHXpQEa78/maxresdefault.jpg" width="50%">](https://youtu.be/bSYHXpQEa78)
+
 
 
 Contact : https://lamxuanthinh.tk/
